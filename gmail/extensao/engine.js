@@ -385,6 +385,13 @@
       }
       while (b >= a && (ROLES.has(norm(toks[b].t)) || CONN.has(norm(toks[b].t)))) b--;
       if (a > b) return;
+      // mudança de caixa ("HABITAÇÃO Entre MARIA", "MENDES Ao"): a palavra em caixa normal que não é nome separa as partes
+      for (var q = a + 1; q <= b; q++) {
+        var tp = toks[q - 1].t, tq = toks[q].t;
+        if (isInitial(q - 1) || isInitial(q) || isUpperTok(tp) === isUpperTok(tq)) continue;
+        var tc = norm(isUpperTok(tp) ? tq : tp);
+        if (!FIRST.has(tc) && !SURN.has(tc) && !CONN.has(tc)) { evaluateRun(a, q - 1); evaluateRun(q, b); return; }
+      }
       var first = norm(toks[a].t);
       if (BLOCK.has(first) || MONTHS.has(first)) { if (a < b) evaluateRun(a + 1, b); return; }
       var content = [], initials = 0;
@@ -407,7 +414,21 @@
       else if (hasTitle) isPerson = true;
       else if (!startsInitial && content.length >= 2 && content.every(function (c) { return FIRST.has(c) || SURN.has(c); }) && content.some(function (c) { return SURN.has(c); }) && (FIRST.has(firstC) || SURN.has(firstC))) isPerson = true;
       else if (startsInitial && toks[a].t !== 'S' && SURN.has(content[content.length - 1])) isPerson = true;
-      if (!isPerson) return;
+      if (!isPerson) {
+        // sequência de nomes próprios e apelidos dentro de um título em maiúsculas ("CONTRATO ... ENTRE MARIA HELENA COSTA")
+        var w0 = -1;
+        for (var r = a; r <= b + 1; r++) {
+          var nr = r <= b ? norm(toks[r].t) : '';
+          var nome = r <= b && !isInitial(r) && !BLOCK.has(nr) && (FIRST.has(nr) || SURN.has(nr) || (CONN.has(nr) && w0 >= 0));
+          if (nome) { if (w0 < 0) w0 = r; continue; }
+          if (w0 >= 0) {
+            var w1 = r - 1; while (w1 > w0 && CONN.has(norm(toks[w1].t))) w1--;
+            if ((w0 > a || w1 < b) && w1 > w0) evaluateRun(w0, w1);
+            w0 = -1;
+          }
+        }
+        return;
+      }
       var s = toks[a].s, e = toks[b].e;
       var surface = text.slice(s, e);
       if (PLACES.has(norm(surface))) return;

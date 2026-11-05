@@ -233,8 +233,9 @@
   function juntarLinhas(t) { return String(t).replace(/([^\n])\n(?!\n)/g, '$1 '); }
   // Resposta noutra língua ou degradada: repete-se uma vez o pedido
   function emIngles(t) { return (String(t).match(/\b(the|and|of|with|which|is|are|that)\b/gi) || []).length > 8; }
-  function pedir(sistema, mensagem, maxTokens) {
-    var m = C.mascara([mensagem], $('optMascara').checked);
+  // brutos: os textos originais, com as mudanças de linha, também analisados para detectar os dados pessoais
+  function pedir(sistema, mensagem, maxTokens, brutos) {
+    var m = C.mascara([mensagem].concat(brutos || []), $('optMascara').checked);
     var o = { sistema: sistema, mensagem: m.tapar(mensagem), maxTokens: maxTokens || 5000, esforco: 'baixo' };
     return C.pedirIA(o).then(function (t) {
       if (!emIngles(t)) return t;
@@ -283,7 +284,7 @@
     var d = st.actual, mensagem = compor(p, esc);
     d.conversa.push({ tipo: 'pergunta', texto: p, data: Date.now() });
     mostrarConversa();
-    pedir(SIS_PERGUNTA, mensagem, 5000).then(function (r) {
+    pedir(SIS_PERGUNTA, mensagem, 5000, [p].concat(esc.lista.map(function (e) { return e.texto; }))).then(function (r) {
       var fontes = esc.lista.map(function (e) { return { nome: e.doc.nome, pagina: e.pagina, texto: e.texto.slice(0, 1200) }; });
       d.conversa.push({ tipo: 'resposta', texto: limparMd(r.texto).replace(/\*\*(.+?)\*\*/g, '$1'), fontes: fontes, protegidos: r.n, data: Date.now() });
       $('instrucao').value = '';
@@ -318,13 +319,13 @@
       if (i >= partes.length) return Promise.resolve();
       C.setStatus('assistStatus', partes.length > 1 ? 'A resumir a parte ' + (i + 1) + ' de ' + partes.length + '…' : 'A resumir…', 'busy');
       var msg = 'DOCUMENTO: ' + doc.nome + (partes.length > 1 ? ' (parte ' + (i + 1) + ' de ' + partes.length + ')' : '') + '\n\n' + partes[i];
-      return pedir(SIS_RESUMO, msg, 3500).then(function (r) { parciais.push(r.texto); i++; return proxima(); });
+      return pedir(SIS_RESUMO, msg, 3500, [textoComPaginas(doc)]).then(function (r) { parciais.push(r.texto); i++; return proxima(); });
     }
     proxima().then(function () {
       if (parciais.length === 1) return parciais[0];
       C.setStatus('assistStatus', 'A juntar os resumos parciais…', 'busy');
       return pedir(SIS_RESUMO + ' Recebes resumos parciais de partes sucessivas do mesmo documento: junta-os num único resumo, sem repetições.',
-        'DOCUMENTO: ' + doc.nome + '\n\n' + parciais.map(function (t, k) { return 'RESUMO DA PARTE ' + (k + 1) + ':\n' + t; }).join('\n\n'), 4000).then(function (r) { return r.texto; });
+        'DOCUMENTO: ' + doc.nome + '\n\n' + parciais.map(function (t, k) { return 'RESUMO DA PARTE ' + (k + 1) + ':\n' + t; }).join('\n\n'), 4000, [textoComPaginas(doc)]).then(function (r) { return r.texto; });
     }).then(function (texto) {
       d.conversa.push({ tipo: 'resposta', texto: limparMd(texto).replace(/\*\*(.+?)\*\*/g, '$1'), fontes: [], resumoDe: doc.nome, data: Date.now() });
       C.setStatus('assistStatus', '');
@@ -357,6 +358,7 @@
     var sis = 'És o Assessor Documental, um assistente jurídico ao serviço de juristas e advogados em Portugal. Escreves sempre em português europeu. ' + N.sis +
       ' Não atribuas aos documentos o que deles não consta e não cites legislação nem jurisprudência que neles não esteja referida. ' + REGRAS_COMUNS;
     var integral = docs.map(function (doc) { return '=== DOCUMENTO: ' + doc.nome + ' ===\n' + juntarLinhas(textoComPaginas(doc)); }).join('\n\n');
+    var brutos = docs.map(textoComPaginas);
     var partes = partesTexto(integral, PARTE_RESUMO), parciais = [], i = 0, d = st.actual;
     var btn = $('btnPerguntar'); ocupar(true, btn, 'A preparar…');
     document.querySelectorAll('[data-nota]').forEach(function (b) { b.disabled = true; });
@@ -367,13 +369,13 @@
       if (i >= partes.length) return Promise.resolve();
       C.setStatus('assistStatus', partes.length > 1 ? 'A analisar a parte ' + (i + 1) + ' de ' + partes.length + '…' : 'A aguardar o serviço de IA…', 'busy');
       var msg = 'DOCUMENTOS DO DOSSIÊ' + (partes.length > 1 ? ' (parte ' + (i + 1) + ' de ' + partes.length + ')' : '') + ':\n\n' + partes[i];
-      return pedir(sis, msg, N.maxT).then(function (r) { parciais.push(r.texto); i++; return proxima(); });
+      return pedir(sis, msg, N.maxT, brutos).then(function (r) { parciais.push(r.texto); i++; return proxima(); });
     }
     proxima().then(function () {
       if (parciais.length === 1) return parciais[0];
       C.setStatus('assistStatus', 'A juntar as partes…', 'busy');
       return pedir(sis + ' Recebes versões parciais, elaboradas sobre partes sucessivas dos documentos: junta-as num único texto, sem repetições e com a mesma estrutura.',
-        parciais.map(function (t, k) { return 'VERSÃO PARCIAL ' + (k + 1) + ':\n' + t; }).join('\n\n'), N.maxT).then(function (r) { return r.texto; });
+        parciais.map(function (t, k) { return 'VERSÃO PARCIAL ' + (k + 1) + ':\n' + t; }).join('\n\n'), N.maxT, brutos).then(function (r) { return r.texto; });
     }).then(function (texto) {
       var t = limparMd(texto).replace(/\*\*(.+?)\*\*/g, '$1').split('\n');
       if (t.length > 1 && normal(t[0]).replace(/[^a-z ]/g, '').trim().indexOf(normal(N.titulo)) === 0 && t[0].length < N.titulo.length + 25) t.shift();
