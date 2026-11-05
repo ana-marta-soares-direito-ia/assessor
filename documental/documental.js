@@ -51,6 +51,7 @@
     $('btnColar').addEventListener('click', colar);
     $('btnPerguntar').addEventListener('click', perguntar);
     $('instrucao').addEventListener('keydown', function (e) { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) perguntar(); });
+    document.querySelectorAll('[data-nota]').forEach(function (b) { b.addEventListener('click', function () { gerarNota(b.dataset.nota); }); });
     $('btnLimpar').addEventListener('click', function () {
       if (!st.actual || !st.actual.conversa.length) return;
       if (!confirmar('Apagar a conversa deste dossiê? Os documentos mantêm-se.')) return;
@@ -334,6 +335,60 @@
     }).then(function () { ocupar(false, btn); mostrarConversa(); });
   }
 
+  /* ============================================================ notas do dossiê */
+  var NOTAS = {
+    enquadramento: { titulo: 'Nota de enquadramento', maxT: 4000,
+      sis: 'Elabora uma nota de enquadramento do dossiê, destinada ao jurista que vai trabalhar o caso, com base exclusiva nos documentos fornecidos. ' +
+        'Organiza-a nestas partes, omitindo as que não se apliquem: Objecto e contexto; Partes e intervenientes; Factos e disposições principais; Questões jurídicas que se colocam; Pontos de atenção e elementos em falta. ' +
+        'Em cada afirmação, indica entre parênteses o documento e, quando exista, a página, por exemplo (contrato.docx) ou (peticao.pdf, p. 3).' },
+    faq: { titulo: 'Perguntas frequentes', maxT: 4500,
+      sis: 'Elabora entre dez e quinze perguntas frequentes sobre o dossiê, isto é, as perguntas que um jurista, o cliente ou a parte contrária colocariam sobre os documentos, cada uma seguida de uma resposta breve com base exclusiva nos documentos fornecidos. ' +
+        'Usa o formato: «P: pergunta» numa linha e «R: resposta (documento, p. N)» na linha seguinte, com uma linha em branco entre pares. Se a resposta não constar dos documentos, di-lo.' },
+    cronologia: { titulo: 'Cronologia', maxT: 4500,
+      sis: 'Elabora a cronologia do dossiê com base exclusiva nos documentos fornecidos: todos os factos, actos, comunicações, prazos e vencimentos datados, por ordem cronológica, cada um numa linha no formato «• data: facto (documento, p. N)». ' +
+        'Quando a data for apenas aproximada ou resultar de cálculo a partir dos documentos, assinala-o. Termina com uma parte «Intervenientes», com cada pessoa ou entidade e o seu papel, e uma parte «Datas a confirmar», se as houver. Não calcules prazos legais.' },
+    estudo: { titulo: 'Guia de estudo', maxT: 4500,
+      sis: 'Elabora um guia de estudo do dossiê, com base exclusiva nos documentos fornecidos, com estas partes: Questionário, com oito a dez perguntas de resposta curta; Respostas ao questionário, com a indicação do documento e da página; Glossário dos termos e conceitos jurídicos usados nos documentos, explicados como neles são usados; Temas para desenvolvimento, com três a cinco questões de reflexão sobre o caso.' }
+  };
+  function gerarNota(tipo) {
+    var N = NOTAS[tipo]; if (!N || !C.licenciado() || st.ocupado) return;
+    var docs = st.actual.docs.filter(function (x) { return x.incluir && !x.semTexto; });
+    if (!docs.length) { C.setStatus('assistStatus', 'Acrescente e seleccione pelo menos um documento com texto.', 'err'); return; }
+    var sis = 'És o Assessor Documental, um assistente jurídico ao serviço de juristas e advogados em Portugal. Escreves sempre em português europeu. ' + N.sis +
+      ' Não atribuas aos documentos o que deles não consta e não cites legislação nem jurisprudência que neles não esteja referida. ' + REGRAS_COMUNS;
+    var integral = docs.map(function (doc) { return '=== DOCUMENTO: ' + doc.nome + ' ===\n' + juntarLinhas(textoComPaginas(doc)); }).join('\n\n');
+    var partes = partesTexto(integral, PARTE_RESUMO), parciais = [], i = 0, d = st.actual;
+    var btn = $('btnPerguntar'); ocupar(true, btn, 'A preparar…');
+    document.querySelectorAll('[data-nota]').forEach(function (b) { b.disabled = true; });
+    var rotulo = N.titulo + ' do dossiê (' + C.plural(docs.length, 'documento', 'documentos') + ')';
+    d.conversa.push({ tipo: 'pergunta', texto: rotulo, data: Date.now() });
+    mostrarConversa();
+    function proxima() {
+      if (i >= partes.length) return Promise.resolve();
+      C.setStatus('assistStatus', partes.length > 1 ? 'A analisar a parte ' + (i + 1) + ' de ' + partes.length + '…' : 'A aguardar o serviço de IA…', 'busy');
+      var msg = 'DOCUMENTOS DO DOSSIÊ' + (partes.length > 1 ? ' (parte ' + (i + 1) + ' de ' + partes.length + ')' : '') + ':\n\n' + partes[i];
+      return pedir(sis, msg, N.maxT).then(function (r) { parciais.push(r.texto); i++; return proxima(); });
+    }
+    proxima().then(function () {
+      if (parciais.length === 1) return parciais[0];
+      C.setStatus('assistStatus', 'A juntar as partes…', 'busy');
+      return pedir(sis + ' Recebes versões parciais, elaboradas sobre partes sucessivas dos documentos: junta-as num único texto, sem repetições e com a mesma estrutura.',
+        parciais.map(function (t, k) { return 'VERSÃO PARCIAL ' + (k + 1) + ':\n' + t; }).join('\n\n'), N.maxT).then(function (r) { return r.texto; });
+    }).then(function (texto) {
+      var t = limparMd(texto).replace(/\*\*(.+?)\*\*/g, '$1').split('\n');
+      if (t.length > 1 && normal(t[0]).replace(/[^a-z ]/g, '').trim().indexOf(normal(N.titulo)) === 0 && t[0].length < N.titulo.length + 25) t.shift();
+      d.conversa.push({ tipo: 'resposta', texto: t.join('\n').trim(), fontes: [], titulo: N.titulo, data: Date.now() });
+      C.setStatus('assistStatus', '');
+      return guardar(d);
+    }).catch(function (e) {
+      d.conversa.pop();
+      C.setStatus('assistStatus', e.message || C.errMsg(e), 'err');
+    }).then(function () {
+      ocupar(false, btn); mostrarConversa();
+      document.querySelectorAll('[data-nota]').forEach(function (b) { b.disabled = false; });
+    });
+  }
+
   /* ============================================================ conversa */
   function limparMd(t) {
     return String(t).replace(/^\s*(-{3,}|\*{3,}|_{3,})\s*$/gm, '').replace(/^\s*#{1,6}\s*/gm, '').replace(/^\s*>\s?/gm, '').replace(/^\s*[-*]\s+/gm, '• ').replace(/\n{3,}/g, '\n\n').trim();
@@ -341,6 +396,7 @@
   function formatar(t, nFontes) {
     var h = C.esc(limparMd(t)).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
     h = h.replace(/\[(\d{1,3})\]/g, function (m, n) { return +n >= 1 && +n <= nFontes ? '<button class="cit" data-n="' + n + '">' + n + '</button>' : m; });
+    h = h.replace(/(^|\n)(P: [^\n]+)/g, '$1<b>$2</b>');
     return h.split(/\n{2,}/).map(function (p) { return '<p>' + p.replace(/\n/g, '<br>') + '</p>'; }).join('');
   }
   function mostrarConversa() {
@@ -354,7 +410,7 @@
       var el = document.createElement('div'); el.className = 'msg ' + m.tipo;
       if (m.tipo === 'pergunta') { el.textContent = m.texto; box.appendChild(el); return; }
       var fontes = m.fontes || [];
-      el.innerHTML = (m.resumoDe ? '<div class="msg-t">Resumo de «' + C.esc(m.resumoDe) + '»</div>' : '') + '<div class="msg-c">' + formatar(m.texto, fontes.length) + '</div>' +
+      el.innerHTML = (m.resumoDe ? '<div class="msg-t">Resumo de «' + C.esc(m.resumoDe) + '»</div>' : m.titulo ? '<div class="msg-t">' + C.esc(m.titulo) + '</div>' : '') + '<div class="msg-c">' + formatar(m.texto, fontes.length) + '</div>' +
         (fontes.length ? '<details class="fontes"><summary>' + C.plural(fontes.length, 'excerto consultado', 'excertos consultados') + '</summary>' +
           fontes.map(function (f, i) { return '<div class="fonte" data-n="' + (i + 1) + '"><b>[' + (i + 1) + '] ' + C.esc(f.nome) + (f.pagina ? ', p. ' + f.pagina : '') + '</b><p>' + C.esc(f.texto) + '</p></div>'; }).join('') + '</details>' : '') +
         '<div class="msg-acoes"><button class="link-btn copiar">Copiar</button><button class="link-btn docx">Descarregar (.docx)</button></div>';
@@ -378,7 +434,7 @@
     var idx = st.actual.conversa.indexOf(m), perg = idx > 0 ? st.actual.conversa[idx - 1] : null;
     var paras = [{ text: 'Assessor Documental: ' + st.actual.nome, bold: true, size: 14 }];
     if (perg) { paras.push({ text: 'Pergunta', bold: true, size: 11 }); perg.texto.split('\n').forEach(function (l) { paras.push({ text: l, size: 11 }); }); }
-    paras.push({ text: m.resumoDe ? 'Resumo de «' + m.resumoDe + '»' : 'Resposta', bold: true, size: 11 });
+    paras.push({ text: m.resumoDe ? 'Resumo de «' + m.resumoDe + '»' : m.titulo || 'Resposta', bold: true, size: 11 });
     m.texto.split('\n').forEach(function (l) { paras.push({ text: l, size: 11 }); });
     if (m.fontes && m.fontes.length) {
       paras.push({ text: 'Excertos consultados', bold: true, size: 11 });
@@ -389,6 +445,6 @@
     C.descarregar('assessor-documental.docx', new Blob([bytes], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' }));
   }
 
-  window.__documental = { st: st, escolher: escolher, termos: termos };
+  window.__documental = { st: st, NOTAS: NOTAS, escolher: escolher, termos: termos };
   boot();
 })();

@@ -69,6 +69,16 @@
             <div id="docsStatus" class="status" aria-live="polite"></div>
             <div id="docs" class="docs"></div>
           </div>
+          <div class="card">
+            <div class="step"><span class="num">✎</span><h2>Notas do dossiê</h2></div>
+            <p class="muted small">Geradas a partir de todos os documentos seleccionados.</p>
+            <div class="notas">
+              <button class="btn secondary" data-nota="enquadramento">Nota de enquadramento</button>
+              <button class="btn secondary" data-nota="faq">Perguntas frequentes</button>
+              <button class="btn secondary" data-nota="cronologia">Cronologia</button>
+              <button class="btn secondary" data-nota="estudo">Guia de estudo</button>
+            </div>
+          </div>
         </aside>
 
         <div class="centro">
@@ -121,6 +131,8 @@
       <div class="card prose estreito">
         <h2>Como funciona</h2>
         <p>Os documentos são lidos e guardados apenas neste aparelho, organizados em dossiês. Quando faz uma pergunta, o Assessor Documental procura, neste aparelho, os excertos mais relevantes dos documentos seleccionados e envia ao serviço de IA da sua conta Cloudflare apenas esses excertos e a pergunta, com os nomes, os números de identificação, as moradas, os contactos e os demais dados pessoais substituídos por etiquetas, que são repostas aqui quando a resposta chega. A resposta indica os excertos em que se baseia.</p>
+        <h2>Notas do dossiê</h2>
+        <p>A partir de todos os documentos seleccionados, o Assessor Documental elabora uma nota de enquadramento do caso, as perguntas frequentes com as respostas, a cronologia dos factos com os intervenientes e um guia de estudo com questionário e glossário. Cada nota pode ser copiada ou descarregada em Word.</p>
         <h2>Limitações</h2>
         <p>As respostas são propostas geradas automaticamente, com base exclusiva nos documentos carregados, e não constituem aconselhamento jurídico: devem ser verificadas nos excertos citados. Os PDF digitalizados sem texto não podem ser lidos. A detecção de dados pessoais assenta em regras e em léxicos de nomes.</p>
         <h2>Instalar no aparelho</h2>
@@ -128,7 +140,7 @@
         <h2>Licença</h2>
         <p id="licInfo" class="muted">Sem licença activada.</p>
         <button id="btnDeactivate" class="btn secondary" hidden>Remover a licença deste aparelho</button>
-        <p class="muted small" style="margin-top:12px">Versão 1.0</p>
+        <p class="muted small" style="margin-top:12px">Versão 1.1</p>
       </div>
     </section>
   </main>

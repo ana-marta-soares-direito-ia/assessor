@@ -193,7 +193,7 @@ window.Cofre = (function () {
     ['atual', 'actual'], ['atuais', 'actuais'], ['atualmente', 'actualmente'], ['atualizar', 'actualizar'], ['atualização', 'actualização'],
     ['ativo', 'activo'], ['ativos', 'activos'], ['ativa', 'activa'], ['ativas', 'activas'], ['atividade', 'actividade'], ['atividades', 'actividades'],
     ['objeto', 'objecto'], ['objetos', 'objectos'], ['objetivo', 'objectivo'], ['objetivos', 'objectivos'], ['projeto', 'projecto'], ['projetos', 'projectos'],
-    ['efetivo', 'efectivo'], ['efetiva', 'efectiva'], ['efetivamente', 'efectivamente'], ['efetuar', 'efectuar'], ['efetuado', 'efectuado'], ['efetuada', 'efectuada'],
+    ['efetivo', 'efectivo'], ['efetiva', 'efectiva'], ['efetivamente', 'efectivamente'], ['efetuar', 'efectuar'], ['efetuado', 'efectuado'], ['efetuada', 'efectuada'], ['efetuou', 'efectuou'], ['efetua', 'efectua'], ['efetuam', 'efectuam'], ['efetuados', 'efectuados'], ['efetuadas', 'efectuadas'],
     ['direto', 'directo'], ['direta', 'directa'], ['diretamente', 'directamente'], ['diretor', 'director'], ['diretiva', 'directiva'],
     ['exato', 'exacto'], ['exata', 'exacta'], ['exatamente', 'exactamente'], ['fator', 'factor'], ['fatores', 'factores'],
     ['adotar', 'adoptar'], ['adotado', 'adoptado'], ['adotada', 'adoptada'], ['ótimo', 'óptimo'], ['setor', 'sector'], ['setores', 'sectores'],
@@ -203,10 +203,19 @@ window.Cofre = (function () {
     ['reação', 'reacção'], ['interação', 'interacção'], ['fração', 'fracção'], ['frações', 'fracções'], ['infração', 'infracção'], ['infrações', 'infracções'],
     ['correto', 'correcto'], ['correta', 'correcta'], ['corretos', 'correctos'], ['corretas', 'correctas'], ['corretamente', 'correctamente'],
     ['receção', 'recepção'], ['receções', 'recepções'], ['ótima', 'óptima'], ['ótimos', 'óptimos'], ['contratual', 'contractual'], ['contratuais', 'contractuais'], ['eletrónico', 'electrónico'], ['eletrónica', 'electrónica'], ['eletrónicos', 'electrónicos'],
+    ['janeiro', 'Janeiro'], ['fevereiro', 'Fevereiro'], ['março', 'Março'], ['abril', 'Abril'], ['maio', 'Maio'], ['junho', 'Junho'], ['julho', 'Julho'], ['agosto', 'Agosto'], ['setembro', 'Setembro'], ['outubro', 'Outubro'], ['novembro', 'Novembro'], ['dezembro', 'Dezembro'],
     ['slides', 'diapositivos'], ['slide', 'diapositivo']
   ];
+  // Sem travessões: nas linhas de lista, o primeiro passa a dois pontos; os restantes, a vírgula
+  function semTravessoes(t) {
+    t = t.replace(/[\u2010\u2011]/g, '-');
+    t = t.replace(/^(\s*(?:[•\-*]|\d+[.)])\s+[^\n]*?)\s+[\u2013\u2014]\s+/gm, '$1: ');
+    t = t.replace(/\s+[\u2013\u2014]\s+/g, ', ').replace(/[\u2013\u2014]/g, '-');
+    return t;
+  }
   function grafia(t) {
     if (typeof t !== 'string' || !t) return t;
+    t = semTravessoes(t);
     GRAFIA.forEach(function (par) {
       t = t.replace(new RegExp('(^|[^\\p{L}])(' + par[0] + ')(?![\\p{L}])', 'giu'), function (m, antes, palavra) {
         var novo = par[1];
