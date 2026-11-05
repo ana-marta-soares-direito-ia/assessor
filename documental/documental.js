@@ -245,7 +245,7 @@
   var REGRAS_COMUNS =
     'Escreve em português europeu, com a grafia anterior ao Acordo Ortográfico de 1990, em registo jurídico, claro e sem travessões. ' +
     'As etiquetas como [PESSOA_1] ou [NIF_1] substituem dados pessoais: mantém-nas exactamente como estão. ' +
-    'Não uses formatação Markdown com asteriscos nem cardinais; usa parágrafos curtos e, quando útil, linhas iniciadas por «•».';
+    'Não uses formatação Markdown (asteriscos, cardinais, traços horizontais); escreve os títulos das partes numa linha própria, sem numeração, e usa parágrafos curtos e, quando útil, linhas iniciadas por «•».';
   var SIS_PERGUNTA =
     'És o Assessor Documental, um assistente jurídico ao serviço de juristas e advogados em Portugal. Respondes sempre em português europeu, com base nos excertos de documentos fornecidos, numerados [1], [2] e seguintes.\n' +
     'Regras:\n' +
@@ -257,7 +257,7 @@
   var SIS_RESUMO =
     'És o Assessor Documental, um assistente jurídico ao serviço de juristas e advogados em Portugal. Escreves sempre em português europeu. Resume o documento fornecido, sem acrescentar nada que dele não conste. ' +
     'Organiza o resumo nestas partes, omitindo as que não se apliquem: Natureza do documento; Partes ou entidades; Objecto; Disposições ou factos principais; Prazos, datas e valores; Pontos de atenção. ' +
-    'Indica, sempre que possível, a página entre parênteses, por exemplo (p. 4). ' + REGRAS_COMUNS;
+    'Quando o texto contiver marcas de página, como [p. 4], indica a página entre parênteses, por exemplo (p. 4); caso contrário, não indiques páginas e, quando útil, indica a cláusula ou o artigo. ' + REGRAS_COMUNS;
 
   function compor(pergunta, esc) {
     var l = ['PERGUNTA OU CASO: ' + pergunta];
@@ -341,15 +341,15 @@
     enquadramento: { titulo: 'Nota de enquadramento', maxT: 4000,
       sis: 'Elabora uma nota de enquadramento do dossiê, destinada ao jurista que vai trabalhar o caso, com base exclusiva nos documentos fornecidos. ' +
         'Organiza-a nestas partes, omitindo as que não se apliquem: Objecto e contexto; Partes e intervenientes; Factos e disposições principais; Questões jurídicas que se colocam; Pontos de atenção e elementos em falta. ' +
-        'Em cada afirmação, indica entre parênteses o documento e, quando exista, a página, por exemplo (contrato.docx) ou (peticao.pdf, p. 3).' },
+        'Em cada afirmação, indica entre parênteses o documento e, quando o texto tiver marcas de página como [p. 3], a página, por exemplo (contrato.docx) ou (peticao.pdf, p. 3).' },
     faq: { titulo: 'Perguntas frequentes', maxT: 4500,
       sis: 'Elabora entre dez e quinze perguntas frequentes sobre o dossiê, isto é, as perguntas que um jurista, o cliente ou a parte contrária colocariam sobre os documentos, cada uma seguida de uma resposta breve com base exclusiva nos documentos fornecidos. ' +
-        'Usa o formato: «P: pergunta» numa linha e «R: resposta (documento, p. N)» na linha seguinte, com uma linha em branco entre pares. Se a resposta não constar dos documentos, di-lo.' },
+        'Usa o formato: «P: pergunta» numa linha e «R: resposta (documento e, se existir marca de página, p. N)» na linha seguinte, com uma linha em branco entre pares. Se a resposta não constar dos documentos, di-lo.' },
     cronologia: { titulo: 'Cronologia', maxT: 4500,
-      sis: 'Elabora a cronologia do dossiê com base exclusiva nos documentos fornecidos: todos os factos, actos, comunicações, prazos e vencimentos datados, por ordem cronológica, cada um numa linha no formato «• data: facto (documento, p. N)». ' +
+      sis: 'Elabora a cronologia do dossiê com base exclusiva nos documentos fornecidos: todos os factos, actos, comunicações, prazos e vencimentos datados, por ordem cronológica, cada um numa linha no formato «• data: facto (documento e, se existir marca de página, p. N)». ' +
         'Quando a data for apenas aproximada ou resultar de cálculo a partir dos documentos, assinala-o. Termina com uma parte «Intervenientes», com cada pessoa ou entidade e o seu papel, e uma parte «Datas a confirmar», se as houver. Não calcules prazos legais.' },
     estudo: { titulo: 'Guia de estudo', maxT: 4500,
-      sis: 'Elabora um guia de estudo do dossiê, com base exclusiva nos documentos fornecidos, com estas partes: Questionário, com oito a dez perguntas de resposta curta; Respostas ao questionário, com a indicação do documento e da página; Glossário dos termos e conceitos jurídicos usados nos documentos, explicados como neles são usados; Temas para desenvolvimento, com três a cinco questões de reflexão sobre o caso.' }
+      sis: 'Elabora um guia de estudo do dossiê, com base exclusiva nos documentos fornecidos, com estas partes: Questionário, com oito a dez perguntas de resposta curta; Respostas ao questionário, com a indicação do documento e, quando existam marcas de página, da página; Glossário dos termos e conceitos jurídicos usados nos documentos, explicados como neles são usados; Temas para desenvolvimento, com três a cinco questões de reflexão sobre o caso.' }
   };
   function gerarNota(tipo) {
     var N = NOTAS[tipo]; if (!N || !C.licenciado() || st.ocupado) return;
@@ -393,7 +393,7 @@
 
   /* ============================================================ conversa */
   function limparMd(t) {
-    return String(t).replace(/^\s*(-{3,}|\*{3,}|_{3,})\s*$/gm, '').replace(/^\s*#{1,6}\s*/gm, '').replace(/^\s*>\s?/gm, '').replace(/^\s*[-*]\s+/gm, '• ').replace(/\n{3,}/g, '\n\n').trim();
+    return String(t).replace(/\*\*(.+?)\*\*/g, '$1').replace(/(^|[^*\w])\*([^*\n]+?)\*(?![*\w])/g, '$1$2').replace(/^\s*(-{3,}|\*{3,}|_{3,})\s*$/gm, '').replace(/^\s*#{1,6}\s*/gm, '').replace(/^\s*>\s?/gm, '').replace(/^\s*[-*]\s+/gm, '• ').replace(/\n{3,}/g, '\n\n').trim();
   }
   function formatar(t, nFontes) {
     var h = C.esc(limparMd(t)).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
