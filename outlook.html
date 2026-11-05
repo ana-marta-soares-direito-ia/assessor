@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Assessor para Outlook: assistente de IA que resume e-mails e anexos e prepara respostas | Ana Marta Soares</title>
+<meta name="description" content="Assistente de IA para o Outlook: resume e analisa mensagens e anexos (PDF e Word), identifica pedidos e prazos, prepara respostas, escreve e-mails e melhora o texto, com os dados pessoais protegidos antes de qualquer envio. Licença: 130 €.">
+<link rel="canonical" href="https://ana-marta-soares-direito-ia.github.io/assessor/outlook.html">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Ana Marta Soares">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_PT">
+<meta property="og:title" content="Assessor para Outlook">
+<meta property="og:description" content="Assistente de IA para o Outlook: resume e analisa mensagens e anexos (PDF e Word), identifica pedidos e prazos, prepara respostas, escreve e-mails e melhora o texto, com os dados pessoais protegidos antes de qualquer envio. Licença: 130 €.">
+<meta property="og:url" content="https://ana-marta-soares-direito-ia.github.io/assessor/outlook.html">
+<meta property="og:image" content="https://ana-marta-soares-direito-ia.github.io/assessor/assets/outlook-painel.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Assessor para Outlook", "url": "https://ana-marta-soares-direito-ia.github.io/assessor/outlook.html", "applicationCategory": "BusinessApplication", "operatingSystem": "Windows, macOS, Outlook na Web", "inLanguage": "pt-PT", "description": "Assistente de IA para o Outlook: resume e analisa mensagens e anexos (PDF e Word), identifica pedidos e prazos, prepara respostas, escreve e-mails e melhora o texto, com os dados pessoais protegidos antes de qualquer envio. Licença: 130 €.", "image": "https://ana-marta-soares-direito-ia.github.io/assessor/assets/outlook-painel.jpg", "offers": {"@type": "Offer", "price": "130", "priceCurrency": "EUR"}, "author": {"@type": "Person", "name": "Ana Marta Soares", "jobTitle": "Especialista em IA aplicada ao Direito", "url": "https://ana-marta-soares.netlify.app/", "sameAs": ["https://www.linkedin.com/in/marta-soares-direito-ia"]}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Como responder a e-mails com IA no Outlook sem expor dados de clientes?", "acceptedAnswer": {"@type": "Answer", "text": "Com o Assessor para Outlook, abra a mensagem, escolha «Rascunho de resposta» e seleccione «Preparar». Antes do envio ao serviço de IA, os dados pessoais são substituídos por etiquetas, que são repostas no seu computador quando o rascunho chega."}}, {"@type": "Question", "name": "Funciona no Mac, no Windows e no Outlook na Web?", "acceptedAnswer": {"@type": "Answer", "text": "Sim: no Outlook na Web, no novo Outlook, no Outlook clássico para Windows (Microsoft 365 ou Outlook 2021 e posteriores) e no Outlook para Mac, com contas Microsoft 365, Outlook.com e Hotmail. Instalado uma vez, fica disponível em todas as versões com a mesma conta."}}, {"@type": "Question", "name": "Os dados são enviados para algum servidor?", "acceptedAnswer": {"@type": "Answer", "text": "Os anexos são lidos no computador. O assistente envia ao serviço de IA da conta Cloudflare do próprio utilizador apenas a mensagem, os anexos seleccionados ou o rascunho em causa, com os nomes, os endereços de correio electrónico, os contactos, os NIF e os demais dados pessoais substituídos por etiquetas, que são repostas no computador quando a resposta chega."}}, {"@type": "Question", "name": "O assistente envia mensagens por mim?", "acceptedAnswer": {"@type": "Answer", "text": "Não. O Assessor prepara o rascunho e coloca-o na mensagem apenas quando o utilizador o pede; o envio é sempre feito pelo utilizador, depois de rever o texto."}}, {"@type": "Question", "name": "Porque é preciso uma conta Cloudflare?", "acceptedAnswer": {"@type": "Answer", "text": "O assistente usa um modelo de IA na nuvem. Com a conta Cloudflare gratuita do próprio utilizador, a quota diária é só sua, sem custos e sem cartão de crédito. Os passos estão descritos nesta página, na secção «Ligar a conta de IA»."}}, {"@type": "Question", "name": "Quanto custa o Assessor para Outlook?", "acceptedAnswer": {"@type": "Answer", "text": "A licença individual custa 130 €, em pagamento único, e é adquirida a Ana Marta Soares."}}]}]</script>
+<link rel="icon" href="assets/icon-64.png">
+<style>
+@font-face{font-family:"Fraunces";src:url("fonts/fraunces-600.woff2") format("woff2");font-weight:600;font-display:swap;}
+@font-face{font-family:"Inter";src:url("fonts/inter-400.woff2") format("woff2");font-weight:400;font-display:swap;}
+@font-face{font-family:"Inter";src:url("fonts/inter-600.woff2") format("woff2");font-weight:600;font-display:swap;}
+
+  :root { --ink:#1e1a18; --muted:#5c544f; --line:#ddd4ca; --bg:#f4f1ec; --brand:#1e1a18; --brand2:#3a332f; --soft:#ece6dd; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif; color:var(--ink); background:var(--bg); line-height:1.55; }
+  header { background:linear-gradient(135deg,var(--brand),var(--brand2)); color:#fff; padding:48px 16px 56px; }
+  .wrap { max-width:880px; margin:0 auto; }
+  .brand { display:flex; align-items:center; gap:14px; }
+  .brand img { width:56px; height:56px; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,.25); }
+  h1 { margin:0; font-size:30px; line-height:1.15; }
+  header p.lead { font-size:17px; max-width:640px; opacity:.93; margin:18px 0 26px; }
+  .cta { display:inline-block; background:#fff; color:var(--brand); padding:12px 20px; border-radius:9px; font-weight:650; text-decoration:none; }
+  .cta.solid { background:var(--brand); color:#fff; }
+  .cta.ghost { background:transparent; color:#fff; border:1px solid rgba(255,255,255,.6); margin-left:8px; }
+  main { padding:8px 16px 40px; }
+  section { background:#fff; border:1px solid var(--line); border-radius:14px; padding:24px; margin-top:20px; }
+  h2 { font-size:20px; margin:0 0 12px; color:var(--brand); }
+  h3 { font-size:15px; margin:18px 0 6px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px; }
+  .feat { background:var(--bg); border-radius:10px; padding:14px; }
+  .feat b { display:block; margin-bottom:4px; }
+  ol { padding-left:20px; margin:6px 0; } li { margin:4px 0; }
+  .tabs { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
+  .tabs button { font:inherit; font-size:14px; border:1px solid var(--line); background:#fff; color:var(--brand); padding:8px 12px; border-radius:8px; cursor:pointer; }
+  .tabs button.on { background:var(--brand); color:#fff; border-color:var(--brand); }
+  .pane { display:none; } .pane.on { display:block; }
+  code { background:var(--soft); color:var(--brand); padding:1px 5px; border-radius:4px; font-size:13px; word-break:break-all; }
+  .note { background:#fff4dc; color:#6b4600; border-radius:9px; padding:12px 14px; font-size:14px; margin-top:12px; }
+  .muted { color:var(--muted); }
+  footer { text-align:center; color:var(--brand); font-size:13px; padding:20px 16px 32px; }
+  @media (max-width:520px){ h1{font-size:24px} .cta.ghost{margin:10px 0 0} section{padding:18px} }
+
+  /* estilo sóbrio */
+  body { font-family:"Inter","Segoe UI",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif; }
+  header { background:#f4f1ec !important; color:var(--ink) !important; border-bottom:1px solid var(--line); }
+  header p.lead { color:var(--muted); opacity:1; }
+  h1, h2 { font-family:"Fraunces",Georgia,serif; font-weight:600; }
+  h2 { color:var(--ink) !important; }
+  .brand img { box-shadow:none; }
+  .cta { background:var(--ink) !important; color:#fff !important; }
+  .cta.ghost { background:transparent !important; color:var(--ink) !important; border:1px solid var(--ink) !important; }
+  .tabs button { color:var(--ink); }
+  .tabs button.on { background:var(--ink); border-color:var(--ink); color:#fff; }
+  code { background:#ece6dd; color:var(--ink); }
+  a { color:var(--ink); }
+  footer { color:var(--muted); }
+  .shot { display:block; width:100%; max-width:380px; margin:0 auto; border:1px solid var(--line); border-radius:12px; }
+  .duas { display:grid; grid-template-columns: 1fr 380px; gap:28px; align-items:start; } @media (max-width:760px){ .duas{ grid-template-columns:1fr } }
+  .price { font-family:"Fraunces",Georgia,serif; font-size:26px; font-weight:600; margin:0 0 4px; }
+  nav.top { font-size:14px; margin-bottom:22px; } nav.top a { color:var(--muted); text-decoration:none; margin-right:14px; }
+  details { border-top:1px solid var(--line); padding:12px 0; } details:last-child { border-bottom:1px solid var(--line); } summary { cursor:pointer; font-weight:600; }
+  .exemplos li { margin:6px 0; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav class="top"><a href="./">Assessor</a><a href="outlook.html">Assessor para Outlook</a><a href="gmail.html">Assessor para Gmail</a><a href="https://ana-marta-soares.netlify.app/">Ana Marta Soares</a></nav>
+    <div class="brand"><img src="assets/icon-128.png" alt=""><h1>Assessor para Outlook<br><span style="font-weight:400;font-size:20px">Assistente de correio electrónico</span></h1></div>
+    <p class="lead">Um assistente dentro do Outlook que faz o trabalho do correio, como o Copilot: resume as mensagens e os documentos anexados, indica o que é pedido e os prazos, prepara as respostas, escreve e-mails novos e melhora o que está a escrever. Os nomes, os endereços, os NIF e os demais dados dos clientes são protegidos antes de qualquer envio ao serviço de IA.</p>
+    <a class="cta" href="#instalar">Instalar</a>
+    <a class="cta ghost" href="#comprar">Adquirir licença: 130 €</a>
+  </div>
+</header>
+<main class="wrap">
+  <section>
+    <div class="duas">
+      <div>
+        <h2>Peça em linguagem corrente</h2>
+        <p>Abra uma mensagem ou um rascunho, escreva o que pretende ou escolha uma sugestão. O Assessor analisa, prepara o rascunho no tom escolhido e só o coloca na resposta quando o pedir. Por exemplo:</p>
+        <ul class="exemplos"><li>«Resume a mensagem e o contrato anexo.»</li><li>«O que me é pedido e quais são os prazos?»</li><li>«Prepara uma resposta a pedir os documentos em falta.»</li><li>«Escreve um e-mail ao cliente a marcar reunião para a próxima semana.»</li><li>«Melhora o meu texto, num registo jurídico e cordial.»</li></ul>
+      </div>
+      <img class="shot" src="assets/outlook-painel.jpg" alt="Painel do Assessor para Outlook com o resumo de uma mensagem e do anexo e o rascunho de resposta" loading="lazy">
+    </div>
+  </section>
+  <section>
+    <h2>O que faz</h2>
+    <div class="grid"><div class="feat"><b>Resumo e análise</b>Resume a mensagem ou a conversa e indica o que é pedido, os prazos, as tarefas e os pontos jurídicos a ponderar, com a prioridade.</div><div class="feat"><b>Leitura dos anexos</b>Lê os PDF, os documentos Word e os ficheiros de texto anexados e resume cada um: tipo de documento, partes, datas, valores, obrigações e pedidos.</div><div class="feat"><b>Respostas</b>Prepara a resposta no tom escolhido (formal, cordial, firme ou recusa cortês) e abre-a com o texto, pronta a rever. Nada é enviado sem si.</div><div class="feat"><b>E-mails novos</b>Escreve um e-mail a partir de uma instrução, por exemplo «escreve ao cliente a marcar reunião para a próxima semana», com o assunto preenchido.</div><div class="feat"><b>Melhoria do texto</b>Torna o texto que está a escrever mais claro, conciso e em registo jurídico; encurta, revê a ortografia e traduz.</div><div class="feat"><b>Dados protegidos</b>Antes de qualquer envio ao serviço de IA, os nomes, os endereços, os contactos, os NIF e os números de processo são substituídos por etiquetas e repostos no seu computador.</div></div>
+  </section>
+  <section id="comprar">
+    <h2>Como adquirir e começar a utilizar</h2>
+    <p class="price">130 €</p>
+    <p class="muted">Licença individual, em pagamento único.</p>
+    <ol>
+      <li>Envie mensagem a <a href="https://www.linkedin.com/in/marta-soares-direito-ia">Ana Marta Soares no LinkedIn</a>. Após o pagamento, recebe o código de licença, que começa por COFRE-.</li>
+      <li>Instale o Assessor seguindo os <a href="#instalar">passos abaixo</a>.</li>
+      <li>No Outlook, abra uma mensagem, abra o Assessor, cole o código e seleccione <b>Activar</b>.</li>
+      <li>Para usar o assistente, ligue a sua conta Cloudflare gratuita seguindo os <a href="#conta-ia">passos abaixo</a> (cerca de cinco minutos, uma única vez). </li>
+    </ol>
+  </section>
+  <section id="instalar">
+    <h2>Instalação em dois minutos</h2>
+    <p>O Assessor para Outlook funciona no Outlook na Web, no novo Outlook, no Outlook clássico para Windows (Microsoft 365 ou Outlook 2021 e posteriores) e no Outlook para Mac, com contas Microsoft 365, Outlook.com e Hotmail. Basta instalá-lo uma vez: fica disponível em todos os computadores em que use a mesma conta.</p>
+    <div class="tabs" role="tablist">
+      <button class="on" data-p="web">Todas as versões</button>
+      <button data-p="win">Outlook clássico</button>
+      <button data-p="org">Escritórios</button>
+    </div>
+    <div class="pane on" id="p-web">
+      <p><a class="cta solid" href="outlook/manifest.xml" download="assessor-outlook-manifest.xml">Descarregar o ficheiro do suplemento</a></p>
+      <ol>
+        <li>Descarregue o ficheiro do suplemento, <b>assessor-outlook-manifest.xml</b>.</li>
+        <li>Abra <a href="https://aka.ms/olksideload" target="_blank" rel="noopener">aka.ms/olksideload</a> e, se lhe for pedido, inicie sessão com a sua conta de correio. Abre-se a janela dos suplementos do Outlook.</li>
+        <li>Seleccione <b>Os meus suplementos</b> e, no fim da lista, em <b>Suplementos personalizados</b>, seleccione <b>Adicionar um suplemento personalizado</b> e depois <b>Adicionar a partir de ficheiro</b>.</li>
+        <li>Indique o ficheiro descarregado e confirme com <b>Instalar</b>.</li>
+      </ol>
+    </div>
+    <div class="pane" id="p-win">
+      <ol>
+        <li><a href="outlook/manifest.xml" download="assessor-outlook-manifest.xml">Descarregue o ficheiro do suplemento</a>.</li>
+        <li>No Outlook, no separador <b>Base</b>, seleccione <b>Obter Suplementos</b> (ou <b>Todas as Aplicações</b>, consoante a versão).</li>
+        <li>Seleccione <b>Os meus suplementos</b> e, em <b>Suplementos personalizados</b>, seleccione <b>Adicionar um suplemento personalizado</b> e depois <b>Adicionar a partir de ficheiro</b>.</li>
+        <li>Indique o ficheiro descarregado e confirme com <b>Instalar</b>.</li>
+      </ol>
+    </div>
+    <div class="pane" id="p-org">
+      <p>Nos escritórios com Microsoft 365, o administrador pode instalar o suplemento para todos os utilizadores de uma só vez:</p>
+      <ol>
+        <li><a href="outlook/manifest.xml" download="assessor-outlook-manifest.xml">Descarregue o ficheiro do suplemento</a>.</li>
+        <li>No Centro de administração do Microsoft 365, abra <b>Definições &gt; Aplicações integradas &gt; Carregar aplicações personalizadas</b>, escolha <b>Suplemento do Office</b> e carregue o ficheiro.</li>
+        <li>Indique os utilizadores ou grupos abrangidos e conclua.</li>
+      </ol>
+    </div>
+    <div class="note"><b>Onde encontrar o Assessor no Outlook:</b> abra uma mensagem ou um rascunho e seleccione o botão <b>Aplicações</b> (no Outlook clássico, o botão <b>Assessor</b> do separador <b>Base</b>) e escolha <b>Assessor para Outlook</b>. No Outlook na Web e no novo Outlook, o botão pode estar nos três pontos (…) da barra da mensagem. O painel pode ser fixado, para acompanhar as mensagens seguintes.</div>
+  </section>
+  <section id="conta-ia">
+    <h2>Ligar a conta de IA</h2>
+    <p>O assistente usa o serviço de IA da Cloudflare. Ao ligar uma conta sua, gratuita, passa a dispor de uma quota diária só para si, sem qualquer custo e sem cartão de crédito. O procedimento demora cerca de cinco minutos e só se faz uma vez. </p>
+    <ol>
+      <li><b>Criar a conta.</b> Abra <a href="https://dash.cloudflare.com/sign-up" target="_blank" rel="noopener">dash.cloudflare.com/sign-up</a>, indique o seu endereço de correio electrónico e uma palavra-passe e confirme a conta através da mensagem que recebe.</li>
+      <li><b>Abrir o Workers AI.</b> No painel da Cloudflare, no menu da esquerda, abra <b>AI</b> e depois <b>Workers AI</b>. Seleccione <b>Use REST API</b>.</li>
+      <li><b>Copiar o identificador da conta.</b> Em <b>Get Account ID</b>, copie o código <b>Account ID</b>.</li>
+      <li><b>Criar o token.</b> Seleccione <b>Create a Workers AI API Token</b>, depois <b>Create API Token</b>, e copie o token com <b>Copy API Token</b>. Guarde-o, porque a Cloudflare só o mostra uma vez.</li>
+      <li><b>Ligar a conta no Assessor.</b> No painel do Assessor para Outlook, abra o separador <b>Conta de IA</b>. Cole o Account ID no primeiro campo e o token no segundo e seleccione <b>Guardar e testar</b>. O Assessor confirma a ligação.</li>
+    </ol>
+    <div class="note"><b>Privacidade:</b> o identificador e o token ficam guardados apenas no seu computador e servem só para pedir à sua conta o trabalho da IA. Os nomes, os endereços, os contactos e os demais dados pessoais das mensagens são substituídos por etiquetas antes do envio e só voltam a aparecer no seu ecrã. <b>Quota gratuita:</b> cada conta gratuita dispõe de 10 000 unidades de utilização por dia, renovadas diariamente; cada pedido ao assistente consome apenas uma parte dessa quota.</div>
+  </section>
+  <section id="redes">
+    <h2>Redes de empresas e serviços públicos</h2>
+    <p>O Assessor para Outlook funciona em redes privadas e protegidas, desde que tenham acesso à internet para os endereços abaixo. Nas redes com filtragem de tráfego, o serviço de informática deve autorizá-los:</p>
+    <ul>
+      <li><code>ana-marta-soares-direito-ia.github.io</code>: painel do Assessor</li>
+      <li><code>appsforoffice.microsoft.com</code>: biblioteca da Microsoft para suplementos</li>
+      <li><code>concurso-antes-ana-marta-soares.pages.dev</code>: ligação ao serviço de IA</li>
+    </ul>
+    <p>Nos escritórios em que o administrador do Microsoft 365 desactivou a instalação de suplementos pelos utilizadores, a instalação é feita pelo administrador, no separador «Escritórios» acima.</p>
+    <p>Em redes totalmente isoladas da internet, o assistente de IA não pode funcionar, porque depende do serviço da Cloudflare.</p>
+  </section>
+  <section id="perguntas">
+    <h2>Perguntas frequentes</h2>
+    <details><summary>Como responder a e-mails com IA no Outlook sem expor dados de clientes?</summary><p>Com o Assessor para Outlook, abra a mensagem, escolha «Rascunho de resposta» e seleccione «Preparar». Antes do envio ao serviço de IA, os dados pessoais são substituídos por etiquetas, que são repostas no seu computador quando o rascunho chega.</p></details><details><summary>Funciona no Mac, no Windows e no Outlook na Web?</summary><p>Sim: no Outlook na Web, no novo Outlook, no Outlook clássico para Windows (Microsoft 365 ou Outlook 2021 e posteriores) e no Outlook para Mac, com contas Microsoft 365, Outlook.com e Hotmail. Instalado uma vez, fica disponível em todas as versões com a mesma conta.</p></details><details><summary>Os dados são enviados para algum servidor?</summary><p>Os anexos são lidos no computador. O assistente envia ao serviço de IA da conta Cloudflare do próprio utilizador apenas a mensagem, os anexos seleccionados ou o rascunho em causa, com os nomes, os endereços de correio electrónico, os contactos, os NIF e os demais dados pessoais substituídos por etiquetas, que são repostas no computador quando a resposta chega.</p></details><details><summary>O assistente envia mensagens por mim?</summary><p>Não. O Assessor prepara o rascunho e coloca-o na mensagem apenas quando o utilizador o pede; o envio é sempre feito pelo utilizador, depois de rever o texto.</p></details><details><summary>Porque é preciso uma conta Cloudflare?</summary><p>O assistente usa um modelo de IA na nuvem. Com a conta Cloudflare gratuita do próprio utilizador, a quota diária é só sua, sem custos e sem cartão de crédito. Os passos estão descritos nesta página, na secção «Ligar a conta de IA».</p></details><details><summary>Quanto custa o Assessor para Outlook?</summary><p>A licença individual custa 130 €, em pagamento único, e é adquirida a Ana Marta Soares.</p></details>
+  </section>
+</main>
+<footer><a href="privacidade.html" style="color:inherit">Política de privacidade</a> · <a href="termos.html" style="color:inherit">Termos de utilização</a><br><a href="https://ana-marta-soares.netlify.app/" style="color:inherit">Ana Marta Soares, Especialista em IA aplicada ao Direito</a> · <a href="https://ana-marta-soares.netlify.app/#ferramentas" style="color:inherit">Outras ferramentas</a></footer>
+<script>
+  document.querySelectorAll('.tabs button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('.tabs button').forEach(function (x) { x.classList.toggle('on', x === b); });
+      document.querySelectorAll('.pane').forEach(function (p) { p.classList.toggle('on', p.id === 'p-' + b.dataset.p); });
+    });
+  });
+</script>
+</body>
+</html>

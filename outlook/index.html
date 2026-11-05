@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Assessor para Outlook</title>
+  <script>
+    window.__cofreSuportado = (function () {
+      try { new RegExp('(?<![a-z])b', 'u'); new RegExp('\\p{L}', 'u'); return typeof Promise !== 'undefined' && typeof Map !== 'undefined'; }
+      catch (e) { return false; }
+    })();
+  </script>
+  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+  <link rel="stylesheet" href="../taskpane.css">
+  <link rel="stylesheet" href="../office/office.css">
+</head>
+<body data-modo="nenhum">
+  <header class="top">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="13" width="22" height="16" rx="3.5" fill="currentColor" opacity=".95"/><path d="M10 13V9.5a6 6 0 0 1 12 0V13" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="16" cy="20" r="2.4" fill="#fff"/><rect x="15" y="21" width="2" height="4" rx="1" fill="#fff"/></svg>
+      <div><h1>Assessor para Outlook</h1><p class="sub">Assistente de correio electrónico</p></div>
+    </div>
+    <nav class="tabs" role="tablist">
+      <button class="tab active" data-tab="assist" role="tab" aria-selected="true">Assistente</button>
+      <button class="tab" data-tab="conta" role="tab" aria-selected="false">Conta de IA</button>
+      <button class="tab" data-tab="info" role="tab" aria-selected="false">Informação</button>
+    </nav>
+  </header>
+
+  <main>
+    <div id="unsupported" class="notice danger" hidden>Esta versão do programa não permite executar o Assessor. É necessário o Microsoft 365, o Outlook 2021 ou uma versão posterior, o novo Outlook ou o Outlook na Web.</div>
+    <div id="outside" class="notice warn" hidden>Este painel destina-se a ser aberto dentro do Outlook, com uma mensagem ou um rascunho abertos. Consulte as instruções de instalação.</div>
+
+    <section id="licGate" class="card" hidden>
+      <div class="step"><span class="num">🔑</span><h2>Activação da licença</h2></div>
+      <p class="muted">Para utilizar o Assessor para Outlook, cole o código de licença que recebeu. A activação é feita uma única vez em cada computador.</p>
+      <label class="lbl" for="licCode">Código de licença</label>
+      <textarea id="licCode" rows="4" placeholder="COFRE-..." spellcheck="false" autocomplete="off"></textarea>
+      <button id="btnActivate" class="btn primary block">Activar</button>
+      <div id="licStatus" class="status" aria-live="polite"></div>
+      <div class="notice info small">Ainda não tem licença? Contacte <a href="https://www.linkedin.com/in/marta-soares-direito-ia" target="_blank" rel="noopener">Ana Marta Soares através do LinkedIn</a>.</div>
+    </section>
+
+    <!-- ============================================ ASSISTENTE -->
+    <section id="tab-assist" class="panel active">
+      <div id="avisoConta" class="notice warn small" hidden>Para usar o assistente, ligue primeiro a sua conta Cloudflare gratuita no separador «Conta de IA».</div>
+      <div id="semMensagem" class="notice info small">Abra uma mensagem para a analisar ou responder, ou abra um rascunho para o melhorar.</div>
+      <div id="contexto" class="ctx" hidden>
+        <div class="ctx-h"><span id="modoTexto" class="modo"></span><button id="btnActualizar" class="link-btn" title="Ler de novo a mensagem aberta">Actualizar</button></div>
+        <div id="ctxAssunto" class="ctx-a"></div>
+        <div id="ctxDe" class="ctx-d"></div>
+        <div id="anexosBloco" hidden>
+          <div class="ctx-l">Anexos a considerar</div>
+          <div id="anexosLista"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="step"><span class="num">1</span><h2>O que pretende?</h2></div>
+        <textarea id="instrucao" rows="4" placeholder=""></textarea>
+        <div id="sugLeitura" class="sugestoes">
+          <button class="chip-btn" data-sugestao="Resume a mensagem e os anexos.">Resumir</button>
+          <button class="chip-btn" data-sugestao="Analisa a mensagem e os anexos: indica o que me é pedido, os prazos e os pontos jurídicos a ponderar.">Analisar</button>
+          <button class="chip-btn" data-sugestao="Prepara uma resposta a esta mensagem.">Rascunho de resposta</button>
+          <button class="chip-btn" data-sugestao="Prepara uma resposta a confirmar a recepção e a indicar que responderei com detalhe em breve.">Acusar a recepção</button>
+          <button class="chip-btn" data-sugestao="Prepara uma resposta a solicitar os documentos e as informações em falta.">Pedir elementos</button>
+          <button class="chip-btn" data-sugestao="Indica as tarefas que tenho de cumprir e os prazos que resultam da mensagem e dos anexos.">Tarefas e prazos</button>
+          <button class="chip-btn" data-sugestao="Traduz esta mensagem para português.">Traduzir</button>
+        </div>
+        <div id="sugComposicao" class="sugestoes" hidden>
+          <button class="chip-btn" data-sugestao="Escreve um e-mail a ">Escrever um e-mail</button>
+          <button class="chip-btn" data-sugestao="Melhora o meu texto: mais claro, conciso e em registo jurídico, sem alterar os factos.">Melhorar o texto</button>
+          <button class="chip-btn" data-sugestao="Torna o meu texto mais formal.">Mais formal</button>
+          <button class="chip-btn" data-sugestao="Torna o meu texto mais curto, mantendo o essencial.">Encurtar</button>
+          <button class="chip-btn" data-sugestao="Revê a ortografia e a gramática do meu texto, sem alterar o conteúdo.">Rever a ortografia</button>
+          <button class="chip-btn" data-sugestao="Traduz o meu texto para inglês, em registo jurídico.">Traduzir para inglês</button>
+        </div>
+        <label class="lbl" for="tom">Tom do rascunho</label>
+        <select id="tom">
+          <option value="">Adequado à mensagem</option>
+          <option value="formal e institucional">Formal e institucional</option>
+          <option value="cordial e próximo, mantendo o registo profissional">Cordial</option>
+          <option value="firme e assertivo, sem ser descortês">Firme</option>
+          <option value="recusa cortês e fundamentada">Recusa cortês</option>
+        </select>
+        <label class="check"><input type="checkbox" id="optMascara" checked><span>Proteger os dados pessoais antes do envio ao serviço de IA (recomendado)</span></label>
+        <button id="btnExecutar" class="btn primary block">Preparar</button>
+        <div id="assistStatus" class="status" aria-live="polite"></div>
+      </div>
+
+      <div id="resultadoCard" class="card" hidden>
+        <div class="step"><span class="num">2</span><h2>Resultado</h2></div>
+        <div id="resposta" class="resposta"></div>
+        <div id="pontos" class="pontos" hidden></div>
+        <div id="rascunhoBloco" hidden>
+          <h3>Rascunho</h3>
+          <label class="lbl" for="rascunhoAssunto">Assunto</label>
+          <input id="rascunhoAssunto" type="text">
+          <label class="lbl" for="rascunhoCorpo">Texto (pode editá-lo antes de o usar)</label>
+          <textarea id="rascunhoCorpo" rows="12"></textarea>
+          <div class="row wrap">
+            <button id="btnResponder" class="btn primary">Responder com este texto</button>
+            <button id="btnResponderTodos" class="btn secondary">Responder a todos</button>
+            <button id="btnInserir" class="btn primary" hidden>Inserir no rascunho</button>
+            <button id="btnCopiar" class="btn secondary">Copiar</button>
+          </div>
+          <p class="muted small" id="notaInserir">Ao inserir no rascunho, o texto substitui o que estiver seleccionado; sem selecção, é inserido na posição do cursor.</p>
+          <div id="rascunhoStatus" class="status" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ CONTA DE IA -->
+    <section id="tab-conta" class="panel">
+      <div class="card">
+        <div class="step"><span class="num">☁</span><h2>Conta de IA</h2></div>
+        <p class="muted">O assistente usa o serviço de IA da sua própria conta Cloudflare, gratuita, com uma quota diária só sua. Os dados pessoais são substituídos por etiquetas antes do envio e repostos no seu computador.</p>
+        <div id="iaEstado" class="notice small"></div>
+        <label class="lbl" for="iaConta">Identificador da conta (Account ID)</label>
+        <input id="iaConta" type="text" spellcheck="false" autocomplete="off" placeholder="32 caracteres">
+        <label class="lbl" for="iaToken">Token da API (Workers AI)</label>
+        <input id="iaToken" type="password" spellcheck="false" autocomplete="off" placeholder="Cole o token">
+        <button id="btnGuardarConta" class="btn primary block">Guardar e testar</button>
+        <button id="btnRemoverConta" class="btn secondary block">Remover a conta deste computador</button>
+        <div id="contaStatus" class="status" aria-live="polite"></div>
+        <p class="muted small">Os dados de acesso ficam guardados apenas neste computador. Os passos, que demoram cerca de cinco minutos, estão em <a href="https://ana-marta-soares-direito-ia.github.io/assessor/outlook.html#conta-ia" target="_blank" rel="noopener">ana-marta-soares-direito-ia.github.io/assessor/outlook.html</a>, na secção «Ligar a conta de IA».</p>
+      </div>
+    </section>
+
+    <!-- ============================================ INFORMAÇÃO -->
+    <section id="tab-info" class="panel">
+      <div class="card prose">
+        <h2>Assistente</h2>
+        <p>O assistente resume e analisa a mensagem aberta e os anexos (PDF, Word e texto), indica o que é pedido, os prazos, as tarefas e os pontos jurídicos a ponderar, prepara respostas no tom escolhido, escreve novos e-mails a partir de uma instrução e melhora, encurta, revê ou traduz o texto em escrita. Os rascunhos só são colocados na mensagem quando o utilizador o pede, e devem ser revistos antes do envio.</p>
+        <h2>Protecção dos dados</h2>
+        <p>Os anexos são lidos neste computador. Antes do envio ao serviço de IA da conta Cloudflare do utilizador, os nomes, os endereços, os contactos, os números de identificação e os demais dados pessoais são substituídos por etiquetas, que são repostas neste computador quando a resposta chega.</p>
+        <h2>Limitações</h2>
+        <p>As propostas do assistente devem ser verificadas antes de serem utilizadas. Os PDF digitalizados sem texto não podem ser lidos. A detecção de dados pessoais assenta em regras e em léxicos de nomes.</p>
+        <h2>Licença</h2>
+        <p id="licInfo" class="muted">Sem licença activada.</p>
+        <button id="btnDeactivate" class="btn secondary" hidden>Remover a licença deste computador</button>
+        <p class="muted small" style="margin-top:12px">Versão 1.1</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="mark">Ana Marta Soares, Especialista em IA aplicada ao Direito</footer>
+
+  <script src="../nacl-fast.min.js"></script>
+  <script src="../licenca.js"></script>
+  <script src="../engine.js"></script>
+  <script src="../docxutil.js"></script>
+  <script src="../office/comum.js"></script>
+  <script src="../office/anexos.js"></script>
+  <script src="outlook.js"></script>
+  <script src="../office/correio.js"></script>
+</body>
+</html>
