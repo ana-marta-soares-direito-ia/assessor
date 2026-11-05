@@ -210,7 +210,7 @@
     var b = document.createElement('button');
     b.id = 'cofre-gmail-botao'; b.type = 'button'; b.title = 'Abrir o Assessor para Gmail';
     b.textContent = 'Assessor';
-    b.setAttribute('style', 'position:fixed;right:18px;bottom:18px;z-index:2147483000;font:600 13px/1 system-ui,-apple-system,Segoe UI,sans-serif;background:#1e1a18;color:#f4efe6;border:0;border-radius:20px;padding:9px 16px 9px 14px;box-shadow:0 4px 14px rgba(30,26,24,.25);cursor:pointer');
+    b.setAttribute('style', 'position:fixed;right:0;top:46%;z-index:2147483000;font:600 12px/1 system-ui,-apple-system,Segoe UI,sans-serif;background:#1e1a18;color:#f4efe6;border:0;border-radius:0 10px 10px 0;padding:14px 8px;writing-mode:vertical-rl;transform:rotate(180deg);box-shadow:0 4px 14px rgba(30,26,24,.25);cursor:pointer;letter-spacing:.04em');
     b.addEventListener('mousedown', function (e) { e.preventDefault(); });
     b.addEventListener('click', function () { try { chrome.runtime.sendMessage({ tipo: 'abrir' }); } catch (e) { /* extensão recarregada */ } });
     document.body.appendChild(b);

@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Assessor para Gmail",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Assistente de correio electrónico para o Gmail: analisa mensagens e anexos, prepara respostas e protege os dados pessoais. Ana Marta Soares, Especialista em IA aplicada ao Direito.",
   "minimum_chrome_version": "116",
   "icons": {

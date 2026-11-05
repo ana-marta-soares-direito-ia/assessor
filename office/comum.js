@@ -169,7 +169,12 @@ window.Cofre = (function () {
   function mascara(textos, activa) {
     if (!activa) return { tapar: function (t) { return t; }, destapar: function (t) { return t; }, n: 0 };
     var linhas = [];
-    textos.forEach(function (t) { if (typeof t === 'string' && t) t.split('\n').forEach(function (l) { if (l.trim()) linhas.push(l); }); });
+    // análise por linha (nomes em maiúsculas no início de linha) e por parágrafo (dados partidos entre linhas)
+    textos.forEach(function (t) {
+      if (typeof t !== 'string' || !t) return;
+      t.split('\n').forEach(function (l) { if (l.trim()) linhas.push(l); });
+      t.replace(/([^\n])\n(?!\n)/g, '$1 ').split('\n').forEach(function (l) { if (l.trim()) linhas.push(l); });
+    });
     var res = E.analyze(linhas, {});
     var ents = res.entities.filter(function (e) { return e.selected; });
     var plano = E.buildPlan(ents, { style: 'label' });

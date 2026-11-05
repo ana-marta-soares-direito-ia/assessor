@@ -109,7 +109,7 @@
       '8. Não prestes aconselhamento definitivo: nos pontos de atenção, assinala o que deve ser verificado pelo utilizador.';
   }
   function cortar(t, n) { t = String(t || ''); return t.length > n ? t.slice(0, n) + '\n[…texto truncado…]' : t; }
-  function compor(msg, instr, anexos) {
+  function compor(msg, instr, anexos, juntar) {
     var tom = $('tom').value;
     var l = ['INSTRUÇÃO: ' + instr];
     if (tom) l.push('TOM PRETENDIDO PARA O RASCUNHO: ' + tom);
@@ -126,7 +126,8 @@
     }
     if (anexos.length) {
       var cada = Math.max(4000, Math.min(MAX_ANEXO, Math.floor(MAX_ANEXOS / anexos.length)));
-      anexos.forEach(function (a, i) { l.push('', 'ANEXO ' + (i + 1) + ': ' + a.nome, cortar(a.texto, cada)); });
+      // as linhas partidas dos PDF são unidas em parágrafos, para que os dados repartidos por duas linhas sejam reconhecidos
+      anexos.forEach(function (a, i) { l.push('', 'ANEXO ' + (i + 1) + ': ' + a.nome, cortar(juntar ? String(a.texto).replace(/([^\n])\n(?!\n)/g, '$1 ') : a.texto, cada)); });
     }
     return l.join('\n');
   }
@@ -144,8 +145,9 @@
       msg = m; st.msg = m;
       return lerAnexosSeleccionados(m);
     }).then(function (anexos) {
-      var texto = compor(msg, instr, anexos);
-      var m = C.mascara([texto], $('optMascara').checked);
+      var texto = compor(msg, instr, anexos, true);
+      // a análise considera também o texto original dos anexos, linha a linha
+      var m = C.mascara([compor(msg, instr, anexos, false), texto], $('optMascara').checked);
       C.setStatus('assistStatus', (anexos.length ? C.plural(anexos.length, 'anexo lido', 'anexos lidos') + '. ' : '') + (m.n ? C.plural(m.n, 'dado pessoal protegido', 'dados pessoais protegidos') + ' antes do envio. ' : '') + 'A aguardar o serviço de IA…', 'busy');
       return C.pedirIA({ sistema: sistema(), mensagem: m.tapar(texto), maxTokens: 6000, esforco: 'medio' }).then(function (t) {
         return C.destaparFundo(C.extrairJSON(t), m);
