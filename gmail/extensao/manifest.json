@@ -30,7 +30,7 @@
   "host_permissions": [
     "https://mail.google.com/*",
     "https://mail-attachment.googleusercontent.com/*",
-    "https://concurso-antes-ana-marta-soares.pages.dev/*",
+    "https://assessor-ia.pages.dev/*",
     "https://ana-marta-soares-direito-ia.github.io/*"
   ],
   "content_scripts": [

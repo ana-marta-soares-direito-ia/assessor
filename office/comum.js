@@ -8,7 +8,7 @@
 window.Cofre = (function () {
   var E = window.AnonEngine;
   var $ = function (id) { return document.getElementById(id); };
-  var PONTE = 'https://concurso-antes-ana-marta-soares.pages.dev/api/office';
+  var PONTE = 'https://assessor-ia.pages.dev/api/office';
   var CONTA_KEY = 'cofre.ia.conta', TOKEN_KEY = 'cofre.ia.token';
 
   /* ------------------------------------------------------------ utilitários */
