@@ -202,7 +202,7 @@ window.Cofre = (function () {
     ['ativação', 'activação'], ['atuação', 'actuação'], ['atuar', 'actuar'], ['transação', 'transacção'], ['transações', 'transacções'],
     ['reação', 'reacção'], ['interação', 'interacção'], ['fração', 'fracção'], ['frações', 'fracções'], ['infração', 'infracção'], ['infrações', 'infracções'],
     ['correto', 'correcto'], ['correta', 'correcta'], ['corretos', 'correctos'], ['corretas', 'correctas'], ['corretamente', 'correctamente'],
-    ['receção', 'recepção'], ['receções', 'recepções'], ['ótima', 'óptima'], ['ótimos', 'óptimos'], ['eletrónico', 'electrónico'], ['eletrónica', 'electrónica'], ['eletrónicos', 'electrónicos'],
+    ['receção', 'recepção'], ['receções', 'recepções'], ['ótima', 'óptima'], ['ótimos', 'óptimos'], ['contratual', 'contractual'], ['contratuais', 'contractuais'], ['eletrónico', 'electrónico'], ['eletrónica', 'electrónica'], ['eletrónicos', 'electrónicos'],
     ['slides', 'diapositivos'], ['slide', 'diapositivo']
   ];
   function grafia(t) {
