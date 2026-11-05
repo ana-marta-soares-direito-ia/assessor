@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Assessor Documental</title>
+  <meta name="description" content="Resumos de documentos Word e PDF e perguntas sobre eles, com os dados pessoais protegidos. Ana Marta Soares, Especialista em IA aplicada ao Direito.">
+  <meta name="theme-color" content="#1e1a18">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="../assets/icon-64.png">
+  <link rel="apple-touch-icon" href="../assets/icon-256.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Assessor">
+  <script src="suporte.js"></script>
+  <link rel="stylesheet" href="../taskpane.css">
+  <link rel="stylesheet" href="../office/office.css">
+  <link rel="stylesheet" href="documental.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="13" width="22" height="16" rx="3.5" fill="currentColor" opacity=".95"/><path d="M10 13V9.5a6 6 0 0 1 12 0V13" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="16" cy="20" r="2.4" fill="#fff"/><rect x="15" y="21" width="2" height="4" rx="1" fill="#fff"/></svg>
+      <div><h1>Assessor Documental</h1><p class="sub">Resumos e perguntas sobre os seus documentos</p></div>
+    </div>
+    <nav class="tabs" role="tablist">
+      <button class="tab active" data-tab="dossies" role="tab" aria-selected="true">Dossiês</button>
+      <button class="tab" data-tab="conta" role="tab" aria-selected="false">Conta de IA</button>
+      <button class="tab" data-tab="info" role="tab" aria-selected="false">Informação</button>
+    </nav>
+  </header>
+
+  <main>
+    <div id="unsupported" class="notice danger" hidden>Este browser não permite executar o Assessor Documental. Actualize o Google Chrome, o Microsoft Edge, o Safari ou o Brave para a versão mais recente.</div>
+    <div id="outside" class="notice warn" hidden>Não foi possível abrir a área de armazenamento local deste browser. Verifique se não está em navegação privada.</div>
+
+    <section id="licGate" class="card" hidden>
+      <div class="step"><span class="num">🔑</span><h2>Activação da licença</h2></div>
+      <p class="muted">Para utilizar o Assessor Documental, cole o código de licença que recebeu. A activação é feita uma única vez em cada computador ou telemóvel.</p>
+      <label class="lbl" for="licCode">Código de licença</label>
+      <textarea id="licCode" rows="4" placeholder="COFRE-..." spellcheck="false" autocomplete="off"></textarea>
+      <button id="btnActivate" class="btn primary block">Activar</button>
+      <div id="licStatus" class="status" aria-live="polite"></div>
+      <div class="notice info small">Ainda não tem licença? Contacte <a href="https://www.linkedin.com/in/marta-soares-direito-ia" target="_blank" rel="noopener">Ana Marta Soares através do LinkedIn</a>.</div>
+    </section>
+
+    <!-- ============================================ DOSSIÊS -->
+    <section id="tab-dossies" class="panel active">
+      <div class="layout">
+        <aside class="lado">
+          <div class="card">
+            <div class="step"><span class="num">1</span><h2>Dossiê</h2></div>
+            <div class="row"><select id="dossie" aria-label="Dossiê aberto"></select></div>
+            <div class="row wrap acoes">
+              <button id="btnNovo" class="btn secondary">Novo dossiê</button>
+              <button id="btnRenomear" class="btn secondary">Mudar o nome</button>
+              <button id="btnApagar" class="btn secondary">Apagar</button>
+            </div>
+            <div id="dossieStatus" class="status" aria-live="polite"></div>
+          </div>
+          <div class="card">
+            <div class="step"><span class="num">2</span><h2>Documentos</h2></div>
+            <p class="muted small">Word (.docx), PDF e texto. Os documentos ficam guardados apenas neste aparelho.</p>
+            <label class="btn primary block ficheiro">Acrescentar documentos<input id="ficheiros" type="file" accept=".pdf,.docx,.txt,.md,.html,.htm,.rtf,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain" multiple></label>
+            <details class="colar"><summary>Colar um texto</summary>
+              <input id="colarNome" type="text" placeholder="Nome, por exemplo: Lei n.º 6/2006 (NRAU)">
+              <textarea id="colarTexto" rows="6" placeholder="Cole aqui o texto"></textarea>
+              <button id="btnColar" class="btn secondary block">Acrescentar o texto</button>
+            </details>
+            <div id="docsStatus" class="status" aria-live="polite"></div>
+            <div id="docs" class="docs"></div>
+          </div>
+        </aside>
+
+        <div class="centro">
+          <div id="avisoConta" class="notice warn small" hidden>Para resumir e perguntar, ligue primeiro a sua conta Cloudflare gratuita no separador «Conta de IA».</div>
+          <div class="card conversa-card">
+            <div class="step"><span class="num">3</span><h2>Perguntas e resumos</h2><button id="btnLimpar" class="link-btn direita" title="Apagar a conversa deste dossiê">Limpar a conversa</button></div>
+            <div id="conversa" class="conversa">
+              <div class="vazio" id="conversaVazia">
+                <p><b>Acrescente os documentos e pergunte.</b></p>
+                <p>Por exemplo: «Tenho um cliente arrendatário há 12 anos a quem o senhorio quer opor-se à renovação. Esta norma aplica-se ao caso dele?»</p>
+              </div>
+            </div>
+            <div class="sugestoes">
+              <button class="chip-btn" data-sugestao="Resume os documentos seleccionados: natureza, partes, objecto, disposições principais, prazos e valores.">Resumir tudo</button>
+              <button class="chip-btn" data-sugestao="Tenho um cliente na seguinte situação: … Os documentos aplicam-se ao caso dele? Em que termos?">Aplica-se ao caso?</button>
+              <button class="chip-btn" data-sugestao="Que prazos resultam dos documentos?">Prazos</button>
+              <button class="chip-btn" data-sugestao="Que obrigações e direitos resultam para cada parte?">Obrigações</button>
+              <button class="chip-btn" data-sugestao="Há contradições ou incoerências entre os documentos?">Contradições</button>
+            </div>
+            <textarea id="instrucao" rows="4" placeholder="Escreva a pergunta ou descreva o caso do cliente."></textarea>
+            <div class="row wrap entre">
+              <label class="check"><input type="checkbox" id="optMascara" checked><span>Proteger os dados pessoais antes do envio ao serviço de IA</span></label>
+              <button id="btnPerguntar" class="btn primary">Perguntar</button>
+            </div>
+            <div id="assistStatus" class="status" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ CONTA DE IA -->
+    <section id="tab-conta" class="panel">
+      <div class="card estreito">
+        <div class="step"><span class="num">☁</span><h2>Conta de IA</h2></div>
+        <p class="muted">O Assessor Documental usa o serviço de IA da sua própria conta Cloudflare, gratuita, com uma quota diária só sua. Os dados pessoais são substituídos por etiquetas antes do envio e repostos neste aparelho.</p>
+        <div id="iaEstado" class="notice small"></div>
+        <label class="lbl" for="iaConta">Identificador da conta (Account ID)</label>
+        <input id="iaConta" type="text" spellcheck="false" autocomplete="off" placeholder="32 caracteres">
+        <label class="lbl" for="iaToken">Token da API (Workers AI)</label>
+        <input id="iaToken" type="password" spellcheck="false" autocomplete="off" placeholder="Cole o token">
+        <button id="btnGuardarConta" class="btn primary block">Guardar e testar</button>
+        <button id="btnRemoverConta" class="btn secondary block">Remover a conta deste aparelho</button>
+        <div id="contaStatus" class="status" aria-live="polite"></div>
+        <p class="muted small">Os passos, que demoram cerca de cinco minutos, estão em <a href="https://ana-marta-soares-direito-ia.github.io/assessor/documental.html#conta-ia" target="_blank" rel="noopener">ana-marta-soares-direito-ia.github.io/assessor/documental.html</a>, na secção «Ligar a conta de IA».</p>
+      </div>
+    </section>
+
+    <!-- ============================================ INFORMAÇÃO -->
+    <section id="tab-info" class="panel">
+      <div class="card prose estreito">
+        <h2>Como funciona</h2>
+        <p>Os documentos são lidos e guardados apenas neste aparelho, organizados em dossiês. Quando faz uma pergunta, o Assessor Documental procura, neste aparelho, os excertos mais relevantes dos documentos seleccionados e envia ao serviço de IA da sua conta Cloudflare apenas esses excertos e a pergunta, com os nomes, os números de identificação, as moradas, os contactos e os demais dados pessoais substituídos por etiquetas, que são repostas aqui quando a resposta chega. A resposta indica os excertos em que se baseia.</p>
+        <h2>Limitações</h2>
+        <p>As respostas são propostas geradas automaticamente, com base exclusiva nos documentos carregados, e não constituem aconselhamento jurídico: devem ser verificadas nos excertos citados. Os PDF digitalizados sem texto não podem ser lidos. A detecção de dados pessoais assenta em regras e em léxicos de nomes.</p>
+        <h2>Instalar no aparelho</h2>
+        <p>No computador, no Chrome, no Edge ou no Brave, seleccione o ícone de instalação na barra de endereço. No iPhone, no Safari, seleccione Partilhar e «Adicionar ao ecrã principal». No Android, no Chrome, seleccione o menu e «Instalar aplicação».</p>
+        <h2>Licença</h2>
+        <p id="licInfo" class="muted">Sem licença activada.</p>
+        <button id="btnDeactivate" class="btn secondary" hidden>Remover a licença deste aparelho</button>
+        <p class="muted small" style="margin-top:12px">Versão 1.0</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="mark">Ana Marta Soares, Especialista em IA aplicada ao Direito</footer>
+
+  <script src="../nacl-fast.min.js"></script>
+  <script src="../licenca.js"></script>
+  <script src="../engine.js"></script>
+  <script src="../docxutil.js"></script>
+  <script src="../office/comum.js"></script>
+  <script src="../office/anexos.js"></script>
+  <script src="documental.js"></script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Assessor Documental: resumos de Word e PDF e perguntas aos seus documentos, com protecção de dados | Ana Marta Soares</title>
+<meta name="description" content="Aplicação para o computador e o telemóvel que resume documentos Word e PDF e responde a perguntas sobre eles, com citação dos excertos. Os documentos ficam no aparelho e os dados pessoais são protegidos antes de qualquer envio. Licença: 130 €.">
+<link rel="canonical" href="https://ana-marta-soares-direito-ia.github.io/assessor/documental.html">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Ana Marta Soares">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_PT">
+<meta property="og:title" content="Assessor Documental">
+<meta property="og:description" content="Aplicação para o computador e o telemóvel que resume documentos Word e PDF e responde a perguntas sobre eles, com citação dos excertos. Os documentos ficam no aparelho e os dados pessoais são protegidos antes de qualquer envio. Licença: 130 €.">
+<meta property="og:url" content="https://ana-marta-soares-direito-ia.github.io/assessor/documental.html">
+<meta property="og:image" content="https://ana-marta-soares-direito-ia.github.io/assessor/assets/documental-painel.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Assessor Documental", "url": "https://ana-marta-soares-direito-ia.github.io/assessor/documental.html", "applicationCategory": "BusinessApplication", "operatingSystem": "Windows, macOS, iOS, Android", "inLanguage": "pt-PT", "description": "Aplicação para o computador e o telemóvel que resume documentos Word e PDF e responde a perguntas sobre eles, com citação dos excertos. Os documentos ficam no aparelho e os dados pessoais são protegidos antes de qualquer envio. Licença: 130 €.", "image": "https://ana-marta-soares-direito-ia.github.io/assessor/assets/documental-painel.jpg", "offers": {"@type": "Offer", "price": "130", "priceCurrency": "EUR"}, "author": {"@type": "Person", "name": "Ana Marta Soares", "jobTitle": "Especialista em IA aplicada ao Direito", "url": "https://ana-marta-soares.netlify.app/", "sameAs": ["https://www.linkedin.com/in/marta-soares-direito-ia"]}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "O que é o Assessor Documental?", "acceptedAnswer": {"@type": "Answer", "text": "Uma aplicação para o computador e o telemóvel que resume documentos Word e PDF e responde a perguntas sobre eles, com citação dos excertos, semelhante ao NotebookLM, mas com os documentos guardados apenas no aparelho e os dados pessoais protegidos."}}, {"@type": "Question", "name": "Os meus documentos são enviados para algum servidor?", "acceptedAnswer": {"@type": "Answer", "text": "Os documentos são lidos e guardados apenas no aparelho. Para cada pergunta, seguem para o serviço de IA da sua conta Cloudflare apenas os excertos relevantes, com os dados pessoais substituídos por etiquetas, que são repostas no aparelho."}}, {"@type": "Question", "name": "As respostas são fiáveis?", "acceptedAnswer": {"@type": "Answer", "text": "As respostas baseiam-se nos documentos carregados e indicam os excertos e as páginas de que resultam, para verificação. São propostas geradas automaticamente e não substituem a análise jurídica."}}, {"@type": "Question", "name": "Funciona no telemóvel?", "acceptedAnswer": {"@type": "Answer", "text": "Sim, no iPhone, no iPad e no Android, e também no computador, com Windows ou Mac. Pode ser instalado como aplicação."}}, {"@type": "Question", "name": "Que documentos lê?", "acceptedAnswer": {"@type": "Answer", "text": "Documentos Word (.docx), PDF com texto, ficheiros de texto e texto colado. Os PDF digitalizados sem texto não podem ser lidos."}}, {"@type": "Question", "name": "Porque é preciso uma conta Cloudflare?", "acceptedAnswer": {"@type": "Answer", "text": "A IA corre na conta Cloudflare gratuita do próprio utilizador, com uma quota diária só sua, sem custos e sem cartão de crédito. Os passos estão nesta página, na secção «Ligar a conta de IA»."}}, {"@type": "Question", "name": "Quanto custa o Assessor Documental?", "acceptedAnswer": {"@type": "Answer", "text": "A licença individual custa 130 €, em pagamento único, e é adquirida a Ana Marta Soares."}}]}]</script>
+<link rel="icon" href="assets/icon-64.png">
+<style>
+@font-face{font-family:"Fraunces";src:url("fonts/fraunces-600.woff2") format("woff2");font-weight:600;font-display:swap;}
+@font-face{font-family:"Inter";src:url("fonts/inter-400.woff2") format("woff2");font-weight:400;font-display:swap;}
+@font-face{font-family:"Inter";src:url("fonts/inter-600.woff2") format("woff2");font-weight:600;font-display:swap;}
+
+  :root { --ink:#1e1a18; --muted:#5c544f; --line:#ddd4ca; --bg:#f4f1ec; --brand:#1e1a18; --brand2:#3a332f; --soft:#ece6dd; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif; color:var(--ink); background:var(--bg); line-height:1.55; }
+  header { background:linear-gradient(135deg,var(--brand),var(--brand2)); color:#fff; padding:48px 16px 56px; }
+  .wrap { max-width:880px; margin:0 auto; }
+  .brand { display:flex; align-items:center; gap:14px; }
+  .brand img { width:56px; height:56px; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,.25); }
+  h1 { margin:0; font-size:30px; line-height:1.15; }
+  header p.lead { font-size:17px; max-width:640px; opacity:.93; margin:18px 0 26px; }
+  .cta { display:inline-block; background:#fff; color:var(--brand); padding:12px 20px; border-radius:9px; font-weight:650; text-decoration:none; }
+  .cta.solid { background:var(--brand); color:#fff; }
+  .cta.ghost { background:transparent; color:#fff; border:1px solid rgba(255,255,255,.6); margin-left:8px; }
+  main { padding:8px 16px 40px; }
+  section { background:#fff; border:1px solid var(--line); border-radius:14px; padding:24px; margin-top:20px; }
+  h2 { font-size:20px; margin:0 0 12px; color:var(--brand); }
+  h3 { font-size:15px; margin:18px 0 6px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px; }
+  .feat { background:var(--bg); border-radius:10px; padding:14px; }
+  .feat b { display:block; margin-bottom:4px; }
+  ol { padding-left:20px; margin:6px 0; } li { margin:4px 0; }
+  .tabs { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
+  .tabs button { font:inherit; font-size:14px; border:1px solid var(--line); background:#fff; color:var(--brand); padding:8px 12px; border-radius:8px; cursor:pointer; }
+  .tabs button.on { background:var(--brand); color:#fff; border-color:var(--brand); }
+  .pane { display:none; } .pane.on { display:block; }
+  code { background:var(--soft); color:var(--brand); padding:1px 5px; border-radius:4px; font-size:13px; word-break:break-all; }
+  .note { background:#fff4dc; color:#6b4600; border-radius:9px; padding:12px 14px; font-size:14px; margin-top:12px; }
+  .muted { color:var(--muted); }
+  footer { text-align:center; color:var(--brand); font-size:13px; padding:20px 16px 32px; }
+  @media (max-width:520px){ h1{font-size:24px} .cta.ghost{margin:10px 0 0} section{padding:18px} }
+
+  /* estilo sóbrio */
+  body { font-family:"Inter","Segoe UI",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif; }
+  header { background:#f4f1ec !important; color:var(--ink) !important; border-bottom:1px solid var(--line); }
+  header p.lead { color:var(--muted); opacity:1; }
+  h1, h2 { font-family:"Fraunces",Georgia,serif; font-weight:600; }
+  h2 { color:var(--ink) !important; }
+  .brand img { box-shadow:none; }
+  .cta { background:var(--ink) !important; color:#fff !important; }
+  .cta.ghost { background:transparent !important; color:var(--ink) !important; border:1px solid var(--ink) !important; }
+  .tabs button { color:var(--ink); }
+  .tabs button.on { background:var(--ink); border-color:var(--ink); color:#fff; }
+  code { background:#ece6dd; color:var(--ink); }
+  a { color:var(--ink); }
+  footer { color:var(--muted); }
+  .shot { display:block; width:100%; max-width:380px; margin:0 auto; border:1px solid var(--line); border-radius:12px; }
+  .duas { display:grid; grid-template-columns: 1fr 380px; gap:28px; align-items:start; } @media (max-width:760px){ .duas{ grid-template-columns:1fr } }
+  .price { font-family:"Fraunces",Georgia,serif; font-size:26px; font-weight:600; margin:0 0 4px; }
+  nav.top { font-size:14px; margin-bottom:22px; } nav.top a { color:var(--muted); text-decoration:none; margin-right:14px; }
+  details { border-top:1px solid var(--line); padding:12px 0; } details:last-child { border-bottom:1px solid var(--line); } summary { cursor:pointer; font-weight:600; }
+  .exemplos li { margin:6px 0; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav class="top"><a href="./">Assessor</a><a href="documental.html">Assessor Documental</a><a href="outlook.html">Assessor para Outlook</a><a href="gmail.html">Assessor para Gmail</a><a href="https://ana-marta-soares.netlify.app/">Ana Marta Soares</a></nav>
+    <div class="brand"><img src="assets/icon-128.png" alt=""><h1>Assessor Documental<br><span style="font-weight:400;font-size:20px">Pergunte aos seus documentos</span></h1></div>
+    <p class="lead">Carregue contratos, leis, regulamentos, pareceres e peças processuais, em Word ou PDF, e pergunte: «Tenho um cliente nesta situação: aplica-se ao caso dele?». O Assessor Documental responde com base nos seus documentos e indica os excertos em que se apoia, como o NotebookLM, mas sem fuga de dados: os documentos ficam guardados apenas no seu aparelho e os dados pessoais são substituídos por etiquetas antes de qualquer envio ao serviço de IA.</p>
+    <a class="cta" href="#instalar">Instalar</a>
+    <a class="cta ghost" href="#comprar">Adquirir licença: 130 €</a>
+  </div>
+</header>
+<main class="wrap">
+  <section>
+    <div class="duas">
+      <div>
+        <h2>Peça em linguagem corrente</h2>
+        <p>Organize os documentos em dossiês, um por processo ou por cliente, e pergunte em linguagem corrente. Cada resposta indica os excertos e as páginas em que se baseia, para verificação imediata. Por exemplo:</p>
+        <ul class="exemplos"><li>«Tenho um cliente arrendatário e a senhoria enviou a oposição à renovação 200 dias antes do termo. A cláusula aplica-se?»</li><li>«Resume o contrato: partes, objecto, prazos e valores.»</li><li>«Que prazos resultam destes documentos?»</li><li>«Há contradições entre a petição e o contrato?»</li><li>«Que obrigações tem o empreiteiro nos termos do caderno de encargos?»</li></ul>
+      </div>
+      <img class="shot" src="assets/documental-painel.jpg" alt="Assessor Documental com os documentos de um dossiê, uma pergunta sobre o caso de um cliente e a resposta com os excertos citados" loading="lazy">
+    </div>
+  </section>
+  <section>
+    <h2>O que faz</h2>
+    <div class="grid"><div class="feat"><b>Resumos</b>Resumo estruturado de cada documento, com a natureza, as partes, o objecto, as disposições principais, os prazos e os valores, e a indicação das páginas.</div><div class="feat"><b>Perguntas sobre o caso</b>Descreva a situação do cliente: o Assessor identifica os requisitos nos documentos, verifica-os face aos factos e conclui, indicando o que falta apurar.</div><div class="feat"><b>Respostas com fontes</b>Cada afirmação remete para o excerto e a página de onde resulta; um clique mostra o texto original.</div><div class="feat"><b>Dossiês</b>Os documentos e as conversas organizam-se por processo ou por cliente e ficam guardados no aparelho.</div><div class="feat"><b>Word, PDF e texto</b>Lê documentos .docx, PDF com texto e ficheiros de texto, ou texto colado, como uma lei copiada do Diário da República.</div><div class="feat"><b>Dados protegidos</b>Os documentos nunca saem do aparelho por inteiro: só seguem para a IA os excertos necessários, com os nomes, os NIF, as moradas e os contactos substituídos por etiquetas.</div></div>
+  </section>
+  <section id="comprar">
+    <h2>Como adquirir e começar a utilizar</h2>
+    <p class="price">130 €</p>
+    <p class="muted">Licença individual, em pagamento único.</p>
+    <ol>
+      <li>Envie mensagem a <a href="https://www.linkedin.com/in/marta-soares-direito-ia">Ana Marta Soares no LinkedIn</a>. Após o pagamento, recebe o código de licença, que começa por COFRE-.</li>
+      <li>Instale o Assessor seguindo os <a href="#instalar">passos abaixo</a>.</li>
+      <li>Abra o Assessor Documental, cole o código e seleccione <b>Activar</b>.</li>
+      <li>Para usar o assistente, ligue a sua conta Cloudflare gratuita seguindo os <a href="#conta-ia">passos abaixo</a> (cerca de cinco minutos, uma única vez). </li>
+    </ol>
+  </section>
+  <section id="instalar">
+    <h2>Instalação em um minuto</h2>
+    <p>O Assessor Documental funciona no browser do computador ou do telemóvel e pode ser instalado como uma aplicação. Os documentos ficam guardados apenas no aparelho em que os carregar.</p>
+    <p><a class="cta solid" href="documental/" target="_blank" rel="noopener">Abrir o Assessor Documental</a></p>
+    <div class="tabs" role="tablist">
+      <button class="on" data-p="pc">Computador</button>
+      <button data-p="iphone">iPhone e iPad</button>
+      <button data-p="android">Android</button>
+    </div>
+    <div class="pane on" id="p-pc">
+      <ol>
+        <li>Abra o Assessor Documental no Google Chrome, no Microsoft Edge ou no Brave.</li>
+        <li>Seleccione o ícone de instalação, no lado direito da barra de endereço, e confirme com <b>Instalar</b>. O Assessor Documental passa a abrir numa janela própria, como as restantes aplicações.</li>
+        <li>Cole o código de licença e seleccione <b>Activar</b>.</li>
+      </ol>
+    </div>
+    <div class="pane" id="p-iphone">
+      <ol>
+        <li>Abra o Assessor Documental no Safari.</li>
+        <li>Seleccione o botão <b>Partilhar</b> e depois <b>Adicionar ao ecrã principal</b>.</li>
+        <li>Abra o ícone criado, cole o código de licença e seleccione <b>Activar</b>.</li>
+      </ol>
+    </div>
+    <div class="pane" id="p-android">
+      <ol>
+        <li>Abra o Assessor Documental no Chrome.</li>
+        <li>No menu (os três pontos), seleccione <b>Instalar aplicação</b> ou <b>Adicionar ao ecrã principal</b>.</li>
+        <li>Abra o ícone criado, cole o código de licença e seleccione <b>Activar</b>.</li>
+      </ol>
+    </div>
+    <div class="note"><b>Computador e telemóvel:</b> a licença individual pode ser activada no computador e no telemóvel do titular. Os documentos de cada aparelho ficam nesse aparelho e não são sincronizados.</div>
+  </section>
+  <section id="conta-ia">
+    <h2>Ligar a conta de IA</h2>
+    <p>O assistente usa o serviço de IA da Cloudflare. Ao ligar uma conta sua, gratuita, passa a dispor de uma quota diária só para si, sem qualquer custo e sem cartão de crédito. O procedimento demora cerca de cinco minutos e só se faz uma vez. </p>
+    <ol>
+      <li><b>Criar a conta.</b> Abra <a href="https://dash.cloudflare.com/sign-up" target="_blank" rel="noopener">dash.cloudflare.com/sign-up</a>, indique o seu endereço de correio electrónico e uma palavra-passe e confirme a conta através da mensagem que recebe.</li>
+      <li><b>Abrir o Workers AI.</b> No painel da Cloudflare, no menu da esquerda, abra <b>AI</b> e depois <b>Workers AI</b>. Seleccione <b>Use REST API</b>.</li>
+      <li><b>Copiar o identificador da conta.</b> Em <b>Get Account ID</b>, copie o código <b>Account ID</b>.</li>
+      <li><b>Criar o token.</b> Seleccione <b>Create a Workers AI API Token</b>, depois <b>Create API Token</b>, e copie o token com <b>Copy API Token</b>. Guarde-o, porque a Cloudflare só o mostra uma vez.</li>
+      <li><b>Ligar a conta no Assessor.</b> No painel do Assessor para Assessor Documental, abra o separador <b>Conta de IA</b>. Cole o Account ID no primeiro campo e o token no segundo e seleccione <b>Guardar e testar</b>. O Assessor confirma a ligação.</li>
+    </ol>
+    <div class="note"><b>Privacidade:</b> o identificador e o token ficam guardados apenas no seu aparelho e servem só para pedir à sua conta o trabalho da IA. Os nomes, os endereços, os contactos e os demais dados pessoais dos textos enviados são substituídos por etiquetas antes do envio e só voltam a aparecer no seu ecrã. <b>Quota gratuita:</b> cada conta gratuita dispõe de 10 000 unidades de utilização por dia, renovadas diariamente; cada pedido ao assistente consome apenas uma parte dessa quota.</div>
+  </section>
+  <section id="redes">
+    <h2>Redes de empresas e serviços públicos</h2>
+    <p>O Assessor Documental funciona em redes privadas e protegidas, desde que tenham acesso à internet para os endereços abaixo. Nas redes com filtragem de tráfego, o serviço de informática deve autorizá-los:</p>
+    <ul>
+      <li><code>ana-marta-soares-direito-ia.github.io</code>: aplicação e verificação da licença</li>
+      <li><code>assessor-ia.pages.dev</code>: ligação ao serviço de IA</li>
+    </ul>
+    <p>A aplicação abre sem rede; a IA precisa de acesso a estes dois endereços.</p>
+    <p>Em redes totalmente isoladas da internet, o assistente de IA não pode funcionar, porque depende do serviço da Cloudflare.</p>
+  </section>
+  <section id="perguntas">
+    <h2>Perguntas frequentes</h2>
+    <details><summary>O que é o Assessor Documental?</summary><p>Uma aplicação para o computador e o telemóvel que resume documentos Word e PDF e responde a perguntas sobre eles, com citação dos excertos, semelhante ao NotebookLM, mas com os documentos guardados apenas no aparelho e os dados pessoais protegidos.</p></details><details><summary>Os meus documentos são enviados para algum servidor?</summary><p>Os documentos são lidos e guardados apenas no aparelho. Para cada pergunta, seguem para o serviço de IA da sua conta Cloudflare apenas os excertos relevantes, com os dados pessoais substituídos por etiquetas, que são repostas no aparelho.</p></details><details><summary>As respostas são fiáveis?</summary><p>As respostas baseiam-se nos documentos carregados e indicam os excertos e as páginas de que resultam, para verificação. São propostas geradas automaticamente e não substituem a análise jurídica.</p></details><details><summary>Funciona no telemóvel?</summary><p>Sim, no iPhone, no iPad e no Android, e também no computador, com Windows ou Mac. Pode ser instalado como aplicação.</p></details><details><summary>Que documentos lê?</summary><p>Documentos Word (.docx), PDF com texto, ficheiros de texto e texto colado. Os PDF digitalizados sem texto não podem ser lidos.</p></details><details><summary>Porque é preciso uma conta Cloudflare?</summary><p>A IA corre na conta Cloudflare gratuita do próprio utilizador, com uma quota diária só sua, sem custos e sem cartão de crédito. Os passos estão nesta página, na secção «Ligar a conta de IA».</p></details><details><summary>Quanto custa o Assessor Documental?</summary><p>A licença individual custa 130 €, em pagamento único, e é adquirida a Ana Marta Soares.</p></details>
+  </section>
+</main>
+<footer><a href="privacidade.html" style="color:inherit">Política de privacidade</a> · <a href="termos.html" style="color:inherit">Termos de utilização</a><br><a href="https://ana-marta-soares.netlify.app/" style="color:inherit">Ana Marta Soares, Especialista em IA aplicada ao Direito</a> · <a href="https://ana-marta-soares.netlify.app/#ferramentas" style="color:inherit">Outras ferramentas</a></footer>
+<script>
+  document.querySelectorAll('.tabs button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('.tabs button').forEach(function (x) { x.classList.toggle('on', x === b); });
+      document.querySelectorAll('.pane').forEach(function (p) { p.classList.toggle('on', p.id === 'p-' + b.dataset.p); });
+    });
+  });
+</script>
+</body>
+</html>

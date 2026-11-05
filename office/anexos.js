@@ -22,6 +22,25 @@ window.Anexos = (function () {
       return pdfjs;
     });
   }
+  // Texto de cada página do PDF (para citar a página nas respostas)
+  function paginasPdf(buf, maxPaginas, progresso) {
+    return carregarPdf().then(function (p) {
+      return p.lib.getDocument({ data: new Uint8Array(buf), standardFontDataUrl: p.fontes, isEvalSupported: false }).promise;
+    }).then(function (doc) {
+      var n = Math.min(doc.numPages, maxPaginas || 600), out = [], i = 1;
+      function pagina() {
+        if (i > n) return { paginas: out, total: doc.numPages };
+        if (progresso) progresso(i, n);
+        return doc.getPage(i).then(function (pg) { return pg.getTextContent(); }).then(function (tc) {
+          var s = '';
+          tc.items.forEach(function (it) { s += it.str + (it.hasEOL ? '\n' : (it.str && !/\s$/.test(it.str) ? ' ' : '')); });
+          out.push(s.replace(/ {2,}/g, ' ').replace(/[ \t]+\n/g, '\n').trim());
+          i++; return pagina();
+        });
+      }
+      return pagina();
+    });
+  }
   function textoPdf(buf, maxPaginas) {
     return carregarPdf().then(function (p) {
       return p.lib.getDocument({ data: new Uint8Array(buf), standardFontDataUrl: p.fontes, isEvalSupported: false }).promise;
@@ -66,5 +85,5 @@ window.Anexos = (function () {
     for (var i = 0; i < bin.length; i++) u[i] = bin.charCodeAt(i);
     return u.buffer;
   }
-  return { legivel: legivel, extrair: extrair, deBase64: deBase64, ext: ext };
+  return { legivel: legivel, extrair: extrair, deBase64: deBase64, ext: ext, paginasPdf: paginasPdf };
 })();

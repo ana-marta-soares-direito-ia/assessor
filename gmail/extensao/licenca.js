@@ -20,8 +20,9 @@
     41: 'Licença individual (Excel)', 42: 'Licença de escritório (Excel)', 43: 'Licença de validação (Excel)',
     51: 'Licença individual (PowerPoint)', 52: 'Licença de escritório (PowerPoint)', 53: 'Licença de validação (PowerPoint)',
     61: 'Licença individual (Outlook)', 62: 'Licença de escritório (Outlook)', 63: 'Licença de validação (Outlook)',
-    71: 'Licença individual (Gmail)', 72: 'Licença de escritório (Gmail)', 73: 'Licença de validação (Gmail)' };
-  var PRODUTOS = { word: [1, 2, 3, 21, 22], pdf: [11, 12, 13, 21, 22], audio: [31, 32, 33], excel: [41, 42, 43], powerpoint: [51, 52, 53], outlook: [61, 62, 63], gmail: [71, 72, 73] };
+    71: 'Licença individual (Gmail)', 72: 'Licença de escritório (Gmail)', 73: 'Licença de validação (Gmail)',
+    81: 'Licença individual (Assessor Documental)', 82: 'Licença de escritório (Assessor Documental)', 83: 'Licença de validação (Assessor Documental)' };
+  var PRODUTOS = { word: [1, 2, 3, 21, 22], pdf: [11, 12, 13, 21, 22], audio: [31, 32, 33], excel: [41, 42, 43], powerpoint: [51, 52, 53], outlook: [61, 62, 63], gmail: [71, 72, 73], documental: [81, 82, 83] };
   function allows(produto, tipo) { return (PRODUTOS[produto] || []).indexOf(tipo) >= 0; }
 
   function b64ToBytes(s) {

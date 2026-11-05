@@ -1,0 +1,43 @@
+/* Assessor Documental: disposição em ecrã inteiro (computador e telemóvel) */
+body { max-width: 1180px; margin: 0 auto; }
+.top { padding-left: 16px; padding-right: 16px; }
+main { padding: 12px 16px 24px; }
+.layout { display: grid; grid-template-columns: 340px 1fr; gap: 16px; align-items: start; }
+@media (max-width: 820px) { .layout { grid-template-columns: 1fr; } }
+.estreito { max-width: 620px; margin: 0 auto; }
+.acoes { margin-top: 8px; gap: 6px; }
+.acoes .btn { flex: 1 1 auto; font-size: 12px; padding: 7px 8px; }
+.ficheiro { position: relative; overflow: hidden; text-align: center; cursor: pointer; }
+.ficheiro input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.colar { margin: 10px 0 4px; font-size: 12.5px; }
+.colar summary { cursor: pointer; color: var(--brand); }
+.colar input, .colar textarea { width: 100%; box-sizing: border-box; margin-top: 6px; font: inherit; font-size: 12.5px; padding: 7px 8px; border: 1px solid var(--line); border-radius: 7px; }
+.docs { margin-top: 10px; }
+.doc { border-top: 1px solid var(--line); padding: 8px 0; }
+.doc .check { margin: 0; }
+.doc .check small { display: block; color: var(--muted); font-size: 11px; }
+.doc.off b { color: var(--muted); font-weight: 500; }
+.doc-acoes { display: flex; gap: 14px; margin: 4px 0 0 24px; }
+.vazio { color: var(--muted); font-size: 13px; padding: 14px 4px; }
+.vazio p { margin: 0 0 6px; }
+.step .direita { margin-left: auto; }
+.conversa-card { display: flex; flex-direction: column; }
+.conversa { min-height: 260px; max-height: 62vh; overflow-y: auto; padding: 4px 2px 8px; }
+@media (max-width: 820px) { .conversa { max-height: none; } }
+.msg { margin: 10px 0; font-size: 13.5px; line-height: 1.55; }
+.msg.pergunta { background: var(--brand); color: #f4efe6; border-radius: 12px 12px 2px 12px; padding: 9px 12px; margin-left: 15%; white-space: pre-wrap; }
+.msg.resposta { background: #fff; border: 1px solid var(--line); border-radius: 12px 12px 12px 2px; padding: 10px 13px; margin-right: 6%; }
+.msg-t { font-weight: 600; font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+.msg-c p { margin: 0 0 8px; }
+.cit { font: inherit; font-size: 10.5px; font-weight: 600; background: var(--brand-soft); color: var(--brand); border: 0; border-radius: 10px; padding: 1px 6px; margin: 0 1px; cursor: pointer; vertical-align: 1px; }
+.fontes { margin-top: 6px; font-size: 12px; }
+.fontes summary { cursor: pointer; color: var(--muted); }
+.fonte { border-left: 3px solid var(--line); padding: 4px 8px; margin: 6px 0; transition: background .3s; }
+.fonte p { margin: 2px 0 0; white-space: pre-wrap; color: #3a3530; }
+.fonte.realce { background: #f3ead9; border-left-color: #b08d57; }
+.msg-acoes { display: flex; gap: 14px; margin-top: 6px; }
+#instrucao { margin-top: 6px; }
+.entre { justify-content: space-between; align-items: center; gap: 8px; }
+.entre .check { margin: 6px 0; flex: 1 1 240px; }
+#dossie { width: 100%; max-width: none; }
+.ficheiro { display: block; width: 100%; box-sizing: border-box; }
