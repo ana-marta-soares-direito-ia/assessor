@@ -209,7 +209,8 @@ window.Cofre = (function () {
   // Sem travessões: nas linhas de lista, o primeiro passa a dois pontos; os restantes, a vírgula
   function semTravessoes(t) {
     t = t.replace(/[\u2010\u2011]/g, '-');
-    t = t.replace(/^(\s*(?:[•\-*]|\d+[.)])\s+[^\n]*?)\s+[\u2013\u2014]\s+/gm, '$1: ');
+    t = t.replace(/\.[ \t]+[\u2013\u2014][ \t]+([^\n]*?)\.?([ \t]*)$/gm, ' ($1).$2');
+    t = t.replace(/^(\s*(?:(?:[•\-*]|\d+[.)])\s+[^\n]*?|«[^»\n]+»))\s+[\u2013\u2014]\s+/gm, '$1: ');
     t = t.replace(/\s+[\u2013\u2014]\s+/g, ', ').replace(/[\u2013\u2014]/g, '-');
     return t;
   }
