@@ -1,0 +1,16 @@
+{
+  "name": "Assessor de Transcrição",
+  "short_name": "Transcrição",
+  "description": "Gravação no telemóvel e transcrição integral de audiências, reuniões e diligências, sem limite de duração.",
+  "lang": "pt-PT",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f1ec",
+  "theme_color": "#1e1a18",
+  "icons": [
+    { "src": "../assets/icon-128.png", "sizes": "128x128", "type": "image/png" },
+    { "src": "../assets/icon-256.png", "sizes": "256x256", "type": "image/png" },
+    { "src": "../documental/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

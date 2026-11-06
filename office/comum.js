@@ -214,10 +214,12 @@ window.Cofre = (function () {
     t = t.replace(/\s+[\u2013\u2014]\s+/g, ', ').replace(/[\u2013\u2014]/g, '-');
     return t;
   }
-  function grafia(t) {
+  // literal: não substitui palavras (por exemplo, «slides»), só corrige a grafia (transcrições)
+  function grafia(t, literal) {
     if (typeof t !== 'string' || !t) return t;
     t = semTravessoes(t);
     GRAFIA.forEach(function (par) {
+      if (literal && /^slides?$/.test(par[0])) return;
       t = t.replace(new RegExp('(^|[^\\p{L}])(' + par[0] + ')(?![\\p{L}])', 'giu'), function (m, antes, palavra) {
         var novo = par[1];
         if (palavra === palavra.toUpperCase()) novo = novo.toUpperCase();
@@ -316,7 +318,7 @@ window.Cofre = (function () {
     $: $, esc: esc, plural: plural, tick: tick, setStatus: setStatus, busy: busy, errMsg: errMsg, descarregar: descarregar,
     iniciar: iniciar, licenciado: licenciado, showTab: showTab,
     pedirIA: pedirIA, extrairJSON: extrairJSON, conta: conta,
-    mascara: mascara, destaparFundo: destaparFundo,
+    mascara: mascara, destaparFundo: destaparFundo, grafia: grafia,
     registar: registar, desfazerTudo: desfazerTudo, actualizarDesfazer: actualizarDesfazer,
     tiposActivos: tiposActivos, mostrarEntidades: mostrarEntidades, tabelaDocx: tabelaDocx, lerFicheiroTabela: lerFicheiroTabela
   };

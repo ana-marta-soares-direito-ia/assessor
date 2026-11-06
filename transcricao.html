@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Assessor de Transcrição: gravação no telemóvel e transcrição integral de audiências e reuniões | Ana Marta Soares</title>
+<meta name="description" content="Aplicação para o telemóvel e o computador que grava audiências, reuniões e diligências e as transcreve na íntegra, com a hora de cada parágrafo, sem limite de duração. Também transcreve ficheiros MP3 e de outros formatos. Exporta em Word, texto e MP3. Licença: 130 €.">
+<link rel="canonical" href="https://ana-marta-soares-direito-ia.github.io/assessor/transcricao.html">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Ana Marta Soares">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_PT">
+<meta property="og:title" content="Assessor de Transcrição">
+<meta property="og:description" content="Aplicação para o telemóvel e o computador que grava audiências, reuniões e diligências e as transcreve na íntegra, com a hora de cada parágrafo, sem limite de duração. Também transcreve ficheiros MP3 e de outros formatos. Exporta em Word, texto e MP3. Licença: 130 €.">
+<meta property="og:url" content="https://ana-marta-soares-direito-ia.github.io/assessor/transcricao.html">
+<meta property="og:image" content="https://ana-marta-soares-direito-ia.github.io/assessor/assets/transcricao-painel.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Assessor de Transcrição", "url": "https://ana-marta-soares-direito-ia.github.io/assessor/transcricao.html", "applicationCategory": "BusinessApplication", "operatingSystem": "iOS, Android, Windows, macOS", "inLanguage": "pt-PT", "description": "Aplicação para o telemóvel e o computador que grava audiências, reuniões e diligências e as transcreve na íntegra, com a hora de cada parágrafo, sem limite de duração. Também transcreve ficheiros MP3 e de outros formatos. Exporta em Word, texto e MP3. Licença: 130 €.", "image": "https://ana-marta-soares-direito-ia.github.io/assessor/assets/transcricao-painel.jpg", "offers": {"@type": "Offer", "price": "130", "priceCurrency": "EUR"}, "author": {"@type": "Person", "name": "Ana Marta Soares", "jobTitle": "Especialista em IA aplicada ao Direito", "url": "https://ana-marta-soares.netlify.app/", "sameAs": ["https://www.linkedin.com/in/marta-soares-direito-ia"]}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "O que é o Assessor de Transcrição?", "acceptedAnswer": {"@type": "Answer", "text": "Uma aplicação para o telemóvel e o computador que grava audiências, reuniões e diligências e as transcreve na íntegra, em português, com a hora de cada parágrafo, sem limite de duração. Também transcreve ficheiros de áudio e de vídeo que já tenha."}}, {"@type": "Question", "name": "Há limite de duração?", "acceptedAnswer": {"@type": "Answer", "text": "Não. As gravações e os ficheiros podem ter qualquer duração, por exemplo 10 horas. O áudio é dividido em partes de cerca de minuto e meio, cortadas nas pausas da fala, e todas são transcritas."}}, {"@type": "Question", "name": "Quanto tempo demora a transcrição?", "acceptedAnswer": {"@type": "Answer", "text": "Na conta Cloudflare, cada parte é transcrita em poucos segundos: com a transcrição durante a gravação, o texto fica pronto pouco depois de terminar. Um ficheiro de 10 horas fica transcrito em cerca de meia hora, dentro da quota disponível. No próprio computador, depende do equipamento."}}, {"@type": "Question", "name": "A gravação pode ser interrompida?", "acceptedAnswer": {"@type": "Answer", "text": "No telemóvel, a aplicação deve ficar aberta e o ecrã ligado. Se o sistema interromper o microfone, por exemplo numa chamada, o áudio gravado fica guardado e a gravação continua com «Continuar a gravar»."}}, {"@type": "Question", "name": "O áudio é enviado para algum servidor?", "acceptedAnswer": {"@type": "Answer", "text": "As gravações e as transcrições ficam guardadas apenas no aparelho. Na transcrição na nuvem, cada parte do áudio é enviada ao modelo Whisper da conta Cloudflare do próprio utilizador, sem retenção de dados. Na transcrição no computador, o áudio não sai do aparelho."}}, {"@type": "Question", "name": "Os oradores são identificados?", "acceptedAnswer": {"@type": "Answer", "text": "Não. A transcrição apresenta o texto integral com a hora de cada parágrafo, que permite ouvir o trecho e conferir quem fala."}}, {"@type": "Question", "name": "Porque é preciso uma conta Cloudflare?", "acceptedAnswer": {"@type": "Answer", "text": "A transcrição na nuvem corre na conta Cloudflare gratuita do próprio utilizador, com uma quota diária só sua, de cerca de três horas e meia de áudio, sem custos e sem cartão de crédito. Os passos estão nesta página, na secção «Ligar a conta de IA»."}}, {"@type": "Question", "name": "Quanto custa o Assessor de Transcrição?", "acceptedAnswer": {"@type": "Answer", "text": "A licença individual custa 130 €, em pagamento único, e é adquirida a Ana Marta Soares."}}]}]</script>
+<link rel="icon" href="assets/icon-64.png">
+<style>
+@font-face{font-family:"Fraunces";src:url("fonts/fraunces-600.woff2") format("woff2");font-weight:600;font-display:swap;}
+@font-face{font-family:"Inter";src:url("fonts/inter-400.woff2") format("woff2");font-weight:400;font-display:swap;}
+@font-face{font-family:"Inter";src:url("fonts/inter-600.woff2") format("woff2");font-weight:600;font-display:swap;}
+
+  :root { --ink:#1e1a18; --muted:#5c544f; --line:#ddd4ca; --bg:#f4f1ec; --brand:#1e1a18; --brand2:#3a332f; --soft:#ece6dd; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif; color:var(--ink); background:var(--bg); line-height:1.55; }
+  header { background:linear-gradient(135deg,var(--brand),var(--brand2)); color:#fff; padding:48px 16px 56px; }
+  .wrap { max-width:880px; margin:0 auto; }
+  .brand { display:flex; align-items:center; gap:14px; }
+  .brand img { width:56px; height:56px; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,.25); }
+  h1 { margin:0; font-size:30px; line-height:1.15; }
+  header p.lead { font-size:17px; max-width:640px; opacity:.93; margin:18px 0 26px; }
+  .cta { display:inline-block; background:#fff; color:var(--brand); padding:12px 20px; border-radius:9px; font-weight:650; text-decoration:none; }
+  .cta.solid { background:var(--brand); color:#fff; }
+  .cta.ghost { background:transparent; color:#fff; border:1px solid rgba(255,255,255,.6); margin-left:8px; }
+  main { padding:8px 16px 40px; }
+  section { background:#fff; border:1px solid var(--line); border-radius:14px; padding:24px; margin-top:20px; }
+  h2 { font-size:20px; margin:0 0 12px; color:var(--brand); }
+  h3 { font-size:15px; margin:18px 0 6px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px; }
+  .feat { background:var(--bg); border-radius:10px; padding:14px; }
+  .feat b { display:block; margin-bottom:4px; }
+  ol { padding-left:20px; margin:6px 0; } li { margin:4px 0; }
+  .tabs { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
+  .tabs button { font:inherit; font-size:14px; border:1px solid var(--line); background:#fff; color:var(--brand); padding:8px 12px; border-radius:8px; cursor:pointer; }
+  .tabs button.on { background:var(--brand); color:#fff; border-color:var(--brand); }
+  .pane { display:none; } .pane.on { display:block; }
+  code { background:var(--soft); color:var(--brand); padding:1px 5px; border-radius:4px; font-size:13px; word-break:break-all; }
+  .note { background:#fff4dc; color:#6b4600; border-radius:9px; padding:12px 14px; font-size:14px; margin-top:12px; }
+  .muted { color:var(--muted); }
+  footer { text-align:center; color:var(--brand); font-size:13px; padding:20px 16px 32px; }
+  @media (max-width:520px){ h1{font-size:24px} .cta.ghost{margin:10px 0 0} section{padding:18px} }
+
+  /* estilo sóbrio */
+  body { font-family:"Inter","Segoe UI",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif; }
+  header { background:#f4f1ec !important; color:var(--ink) !important; border-bottom:1px solid var(--line); }
+  header p.lead { color:var(--muted); opacity:1; }
+  h1, h2 { font-family:"Fraunces",Georgia,serif; font-weight:600; }
+  h2 { color:var(--ink) !important; }
+  .brand img { box-shadow:none; }
+  .cta { background:var(--ink) !important; color:#fff !important; }
+  .cta.ghost { background:transparent !important; color:var(--ink) !important; border:1px solid var(--ink) !important; }
+  .tabs button { color:var(--ink); }
+  .tabs button.on { background:var(--ink); border-color:var(--ink); color:#fff; }
+  code { background:#ece6dd; color:var(--ink); }
+  a { color:var(--ink); }
+  footer { color:var(--muted); }
+  .shot { display:block; width:100%; max-width:380px; margin:0 auto; border:1px solid var(--line); border-radius:12px; }
+  .duas { display:grid; grid-template-columns: 1fr 380px; gap:28px; align-items:start; } @media (max-width:760px){ .duas{ grid-template-columns:1fr } }
+  .price { font-family:"Fraunces",Georgia,serif; font-size:26px; font-weight:600; margin:0 0 4px; }
+  nav.top { font-size:14px; margin-bottom:22px; } nav.top a { color:var(--muted); text-decoration:none; margin-right:14px; }
+  details { border-top:1px solid var(--line); padding:12px 0; } details:last-child { border-bottom:1px solid var(--line); } summary { cursor:pointer; font-weight:600; }
+  .exemplos li { margin:6px 0; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav class="top"><a href="./">Assessor</a><a href="documental.html">Assessor Documental</a><a href="transcricao.html">Assessor de Transcrição</a><a href="outlook.html">Assessor para Outlook</a><a href="gmail.html">Assessor para Gmail</a><a href="https://ana-marta-soares.netlify.app/">Ana Marta Soares</a></nav>
+    <div class="brand"><img src="assets/icon-128.png" alt=""><h1>Assessor de Transcrição<br><span style="font-weight:400;font-size:20px">Grave e transcreva, sem limite de duração</span></h1></div>
+    <p class="lead">Ponha o telemóvel a gravar no início da audiência, da reunião com o cliente ou da diligência e fique com a transcrição integral do que foi dito, com a hora de cada parágrafo. Também transcreve os ficheiros MP3 e de outros formatos que já tenha. Sem limite de duração: uma gravação de 10 horas é transcrita por inteiro.</p>
+    <a class="cta" href="#instalar">Instalar</a>
+    <a class="cta ghost" href="#comprar">Adquirir licença: 130 €</a>
+  </div>
+</header>
+<main class="wrap">
+  <section>
+    <div class="duas">
+      <div>
+        <h2>Grave e fique com o texto</h2>
+        <p>Um botão para gravar, outro para terminar. A transcrição acompanha a gravação ou é feita no fim, e pode ser descarregada em Word. Serve, por exemplo, para:</p>
+        <ul class="exemplos"><li>Audiências de julgamento e inquirições de testemunhas</li><li>Reuniões com clientes e com a parte contrária</li><li>Assembleias gerais, reuniões de câmara e de órgãos colegiais</li><li>Aulas, conferências e formações</li><li>Gravações de videoconferências e mensagens de voz em MP3</li></ul>
+      </div>
+      <img class="shot" src="assets/transcricao-painel.jpg" alt="Assessor de Transcrição com a transcrição integral de uma audiência de julgamento, com a hora de cada parágrafo" loading="lazy">
+    </div>
+  </section>
+  <section>
+    <h2>O que faz</h2>
+    <div class="grid"><div class="feat"><b>Gravação no telemóvel</b>Grava no iPhone, no Android ou no computador, com pausa e retoma. O áudio é guardado no aparelho a cada minuto e meio, pelo que uma interrupção não faz perder a gravação.</div><div class="feat"><b>Sem limite de duração</b>Gravações e ficheiros de qualquer duração: uma audiência de 10 horas é transcrita por inteiro, parte a parte, com os cortes feitos nas pausas da fala.</div><div class="feat"><b>Transcrição integral</b>Todo o texto dito, em português, com a hora de cada parágrafo. Um clique na hora reproduz o trecho correspondente, para conferir a transcrição.</div><div class="feat"><b>Ficheiros MP3 e outros</b>Transcreve ficheiros MP3, M4A, WAV, OGG, OPUS, AAC e FLAC e vídeos MP4, MOV e WEBM, gravados no telemóvel, num gravador ou numa videoconferência.</div><div class="feat"><b>Word, texto e MP3</b>A transcrição é descarregada em Word ou em texto, ou copiada; a gravação feita no Assessor é descarregada em MP3.</div><div class="feat"><b>Na nuvem ou no computador</b>Na sua conta Cloudflare, rápida, também no telemóvel; ou no próprio computador, sem qualquer envio do áudio.</div></div>
+  </section>
+  <section id="comprar">
+    <h2>Como adquirir e começar a utilizar</h2>
+    <p class="price">130 €</p>
+    <p class="muted">Licença individual, em pagamento único.</p>
+    <ol>
+      <li>Envie mensagem a <a href="https://www.linkedin.com/in/marta-soares-direito-ia">Ana Marta Soares no LinkedIn</a>. Após o pagamento, recebe o código de licença, que começa por COFRE-.</li>
+      <li>Instale o Assessor seguindo os <a href="#instalar">passos abaixo</a>.</li>
+      <li>Abra o Assessor de Transcrição, cole o código e seleccione <b>Activar</b>.</li>
+      <li>Para transcrever na nuvem, ligue a sua conta Cloudflare gratuita seguindo os <a href="#conta-ia">passos abaixo</a> (cerca de cinco minutos, uma única vez). A gravação funciona desde logo. </li>
+    </ol>
+  </section>
+  <section id="instalar">
+    <h2>Instalação em um minuto</h2>
+    <p>O Assessor de Transcrição funciona no browser do telemóvel ou do computador e pode ser instalado como uma aplicação. As gravações e as transcrições ficam guardadas apenas no aparelho em que forem feitas.</p>
+    <p><a class="cta solid" href="transcricao/" target="_blank" rel="noopener">Abrir o Assessor de Transcrição</a></p>
+    <div class="tabs" role="tablist">
+      <button class="on" data-p="iphone">iPhone e iPad</button>
+      <button data-p="android">Android</button>
+      <button data-p="pc">Computador</button>
+    </div>
+    <div class="pane on" id="p-iphone">
+      <ol>
+        <li>Abra o Assessor de Transcrição no Safari.</li>
+        <li>Seleccione o botão <b>Partilhar</b> e depois <b>Adicionar ao ecrã principal</b>.</li>
+        <li>Abra o ícone criado, cole o código de licença e seleccione <b>Activar</b>.</li>
+        <li>Na primeira gravação, autorize o acesso ao microfone.</li>
+      </ol>
+    </div>
+    <div class="pane" id="p-android">
+      <ol>
+        <li>Abra o Assessor de Transcrição no Chrome.</li>
+        <li>No menu (os três pontos), seleccione <b>Instalar aplicação</b> ou <b>Adicionar ao ecrã principal</b>.</li>
+        <li>Abra o ícone criado, cole o código de licença e seleccione <b>Activar</b>.</li>
+        <li>Na primeira gravação, autorize o acesso ao microfone.</li>
+      </ol>
+    </div>
+    <div class="pane" id="p-pc">
+      <ol>
+        <li>Abra o Assessor de Transcrição no Google Chrome, no Microsoft Edge ou no Brave.</li>
+        <li>Seleccione o ícone de instalação, no lado direito da barra de endereço, e confirme com <b>Instalar</b>.</li>
+        <li>Cole o código de licença e seleccione <b>Activar</b>.</li>
+      </ol>
+    </div>
+    <div class="note"><b>Gravações longas no telemóvel:</b> mantenha a aplicação aberta e o ecrã ligado durante a gravação e, se for longa, ligue o carregador. O áudio é guardado no aparelho a cada minuto e meio; se o sistema interromper o microfone (por exemplo, numa chamada telefónica), o que foi gravado fica guardado e basta seleccionar <b>Continuar a gravar</b>.</div>
+  </section>
+  <section id="conta-ia">
+    <h2>Ligar a conta de IA</h2>
+    <p>O assistente usa o serviço de IA da Cloudflare. Ao ligar uma conta sua, gratuita, passa a dispor de uma quota diária só para si, sem qualquer custo e sem cartão de crédito. O procedimento demora cerca de cinco minutos e só se faz uma vez. </p>
+    <ol>
+      <li><b>Criar a conta.</b> Abra <a href="https://dash.cloudflare.com/sign-up" target="_blank" rel="noopener">dash.cloudflare.com/sign-up</a>, indique o seu endereço de correio electrónico e uma palavra-passe e confirme a conta através da mensagem que recebe.</li>
+      <li><b>Abrir o Workers AI.</b> No painel da Cloudflare, no menu da esquerda, abra <b>AI</b> e depois <b>Workers AI</b>. Seleccione <b>Use REST API</b>.</li>
+      <li><b>Copiar o identificador da conta.</b> Em <b>Get Account ID</b>, copie o código <b>Account ID</b>.</li>
+      <li><b>Criar o token.</b> Seleccione <b>Create a Workers AI API Token</b>, depois <b>Create API Token</b>, e copie o token com <b>Copy API Token</b>. Guarde-o, porque a Cloudflare só o mostra uma vez.</li>
+      <li><b>Ligar a conta no Assessor.</b> No Assessor de Transcrição, abra o separador <b>Conta de IA</b>. Cole o Account ID no primeiro campo e o token no segundo e seleccione <b>Guardar e testar</b>. O Assessor confirma a ligação.</li>
+    </ol>
+    <div class="note"><b>Privacidade:</b> o identificador e o token ficam guardados apenas no seu aparelho. Cada parte do áudio, com cerca de minuto e meio, é enviada ao modelo Whisper da sua conta, que a trata sem retenção de dados; a ponte do Assessor não conserva o áudio nem as transcrições. Se preferir que o áudio não saia do aparelho, escolha a transcrição <b>Neste computador, sem envio</b>. <b>Quota gratuita:</b> cada conta gratuita dispõe de 10 000 unidades de utilização por dia, que correspondem a cerca de três horas e meia de áudio. Quando a quota se esgota, a transcrição continua no dia seguinte, a partir do ponto em que parou. Com o plano pago da Cloudflare (Workers Paid, 5 dólares por mês), não há esse limite e 10 horas de áudio custam cerca de 0,20 €.</div>
+  </section>
+  <section id="redes">
+    <h2>Redes de empresas e serviços públicos</h2>
+    <p>O Assessor de Transcrição funciona em redes privadas e protegidas, desde que tenham acesso à internet para os endereços abaixo. Nas redes com filtragem de tráfego, o serviço de informática deve autorizá-los:</p>
+    <ul>
+      <li><code>ana-marta-soares-direito-ia.github.io</code>: aplicação e verificação da licença</li>
+      <li><code>assessor-ia.pages.dev</code>: ligação ao serviço de transcrição</li>
+    </ul>
+    <p>A gravação funciona sem rede; a transcrição na nuvem fica em espera e continua quando houver ligação. A transcrição no próprio computador não precisa de rede, depois de descarregado o modelo.</p>
+    <p>Em redes totalmente isoladas da internet, o assistente de IA não pode funcionar, porque depende do serviço da Cloudflare.</p>
+  </section>
+  <section id="perguntas">
+    <h2>Perguntas frequentes</h2>
+    <details><summary>O que é o Assessor de Transcrição?</summary><p>Uma aplicação para o telemóvel e o computador que grava audiências, reuniões e diligências e as transcreve na íntegra, em português, com a hora de cada parágrafo, sem limite de duração. Também transcreve ficheiros de áudio e de vídeo que já tenha.</p></details><details><summary>Há limite de duração?</summary><p>Não. As gravações e os ficheiros podem ter qualquer duração, por exemplo 10 horas. O áudio é dividido em partes de cerca de minuto e meio, cortadas nas pausas da fala, e todas são transcritas.</p></details><details><summary>Quanto tempo demora a transcrição?</summary><p>Na conta Cloudflare, cada parte é transcrita em poucos segundos: com a transcrição durante a gravação, o texto fica pronto pouco depois de terminar. Um ficheiro de 10 horas fica transcrito em cerca de meia hora, dentro da quota disponível. No próprio computador, depende do equipamento.</p></details><details><summary>A gravação pode ser interrompida?</summary><p>No telemóvel, a aplicação deve ficar aberta e o ecrã ligado. Se o sistema interromper o microfone, por exemplo numa chamada, o áudio gravado fica guardado e a gravação continua com «Continuar a gravar».</p></details><details><summary>O áudio é enviado para algum servidor?</summary><p>As gravações e as transcrições ficam guardadas apenas no aparelho. Na transcrição na nuvem, cada parte do áudio é enviada ao modelo Whisper da conta Cloudflare do próprio utilizador, sem retenção de dados. Na transcrição no computador, o áudio não sai do aparelho.</p></details><details><summary>Os oradores são identificados?</summary><p>Não. A transcrição apresenta o texto integral com a hora de cada parágrafo, que permite ouvir o trecho e conferir quem fala.</p></details><details><summary>Porque é preciso uma conta Cloudflare?</summary><p>A transcrição na nuvem corre na conta Cloudflare gratuita do próprio utilizador, com uma quota diária só sua, de cerca de três horas e meia de áudio, sem custos e sem cartão de crédito. Os passos estão nesta página, na secção «Ligar a conta de IA».</p></details><details><summary>Quanto custa o Assessor de Transcrição?</summary><p>A licença individual custa 130 €, em pagamento único, e é adquirida a Ana Marta Soares.</p></details>
+  </section>
+</main>
+<footer><a href="privacidade.html" style="color:inherit">Política de privacidade</a> · <a href="termos.html" style="color:inherit">Termos de utilização</a><br><a href="https://ana-marta-soares.netlify.app/" style="color:inherit">Ana Marta Soares, Especialista em IA aplicada ao Direito</a> · <a href="https://ana-marta-soares.netlify.app/#ferramentas" style="color:inherit">Outras ferramentas</a></footer>
+<script>
+  document.querySelectorAll('.tabs button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('.tabs button').forEach(function (x) { x.classList.toggle('on', x === b); });
+      document.querySelectorAll('.pane').forEach(function (p) { p.classList.toggle('on', p.id === 'p-' + b.dataset.p); });
+    });
+  });
+</script>
+</body>
+</html>

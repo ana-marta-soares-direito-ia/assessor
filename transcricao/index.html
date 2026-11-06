@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Assessor de Transcrição</title>
+  <meta name="description" content="Gravação no telemóvel e transcrição integral de audiências, reuniões e diligências, sem limite de duração. Ana Marta Soares, Especialista em IA aplicada ao Direito.">
+  <meta name="theme-color" content="#1e1a18">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="../assets/icon-64.png">
+  <link rel="apple-touch-icon" href="../assets/icon-256.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Transcrição">
+  <script src="../documental/suporte.js"></script>
+  <link rel="stylesheet" href="../taskpane.css">
+  <link rel="stylesheet" href="../office/office.css">
+  <link rel="stylesheet" href="transcricao.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect x="11" y="3" width="10" height="17" rx="5" fill="currentColor"/><path d="M7 15a9 9 0 0 0 18 0" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><path d="M16 24v5M11 29h10" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
+      <div><h1>Assessor de Transcrição</h1><p class="sub">Gravação e transcrição integral, sem limite de duração</p></div>
+    </div>
+    <nav class="tabs" role="tablist">
+      <button class="tab active" data-tab="gravacoes" role="tab" aria-selected="true">Gravações</button>
+      <button class="tab" data-tab="conta" role="tab" aria-selected="false">Conta de IA</button>
+      <button class="tab" data-tab="info" role="tab" aria-selected="false">Informação</button>
+    </nav>
+  </header>
+
+  <main>
+    <div id="unsupported" class="notice danger" hidden>Este browser não permite executar o Assessor de Transcrição. Actualize o Google Chrome, o Microsoft Edge, o Safari ou o Brave para a versão mais recente.</div>
+    <div id="outside" class="notice warn" hidden>Não foi possível abrir a área de armazenamento local deste browser. Verifique se não está em navegação privada.</div>
+
+    <section id="licGate" class="card" hidden>
+      <div class="step"><span class="num">🔑</span><h2>Activação da licença</h2></div>
+      <p class="muted">Para utilizar o Assessor de Transcrição, cole o código de licença que recebeu. A activação é feita uma única vez em cada computador ou telemóvel.</p>
+      <label class="lbl" for="licCode">Código de licença</label>
+      <textarea id="licCode" rows="4" placeholder="COFRE-..." spellcheck="false" autocomplete="off"></textarea>
+      <button id="btnActivate" class="btn primary block">Activar</button>
+      <div id="licStatus" class="status" aria-live="polite"></div>
+      <div class="notice info small">Ainda não tem licença? Contacte <a href="https://www.linkedin.com/in/marta-soares-direito-ia" target="_blank" rel="noopener">Ana Marta Soares através do LinkedIn</a>.</div>
+    </section>
+
+    <!-- ============================================ GRAVAÇÕES -->
+    <section id="tab-gravacoes" class="panel active">
+      <div class="layout">
+        <aside class="lado">
+          <div class="card">
+            <div class="step"><span class="num">1</span><h2>Gravar ou carregar</h2></div>
+            <button id="btnGravar" class="btn gravar block"><span class="ponto"></span>Gravar agora</button>
+            <label class="check"><input type="checkbox" id="optDurante" checked><span>Transcrever durante a gravação (quando houver rede)</span></label>
+            <div class="ou">ou</div>
+            <label class="btn secondary block ficheiro">Carregar uma gravação (MP3 e outros)<input id="ficheiro" type="file" accept="audio/*,video/*,.mp3,.m4a,.wav,.ogg,.opus,.aac,.flac,.wma,.amr,.3gp,.mp4,.mov,.webm,.mkv"></label>
+            <p class="muted small">Sem limite de duração: uma audiência de 10 horas é transcrita por inteiro. As gravações ficam guardadas apenas neste aparelho.</p>
+            <div id="gravStatus" class="status" aria-live="polite"></div>
+          </div>
+          <div class="card">
+            <div class="step"><span class="num">2</span><h2>As suas gravações</h2></div>
+            <div id="lista" class="lista"></div>
+            <p id="espaco" class="muted small"></p>
+          </div>
+          <div class="card">
+            <div class="step"><span class="num">⚙</span><h2>Onde transcrever</h2></div>
+            <label class="check"><input type="radio" name="motor" value="nuvem" checked><span><b>Na sua conta Cloudflare</b><small>Rápido, no telemóvel e no computador: 10 horas ficam transcritas em cerca de meia hora.</small></span></label>
+            <label class="check"><input type="radio" name="motor" value="local"><span><b>Neste computador, sem envio</b><small>O áudio não sai do aparelho. Mais lento: indicado para computadores recentes.</small></span></label>
+            <div id="localOpcoes" class="local-op" hidden>
+              <label class="lbl" for="qualidade">Qualidade</label>
+              <select id="qualidade"><option value="normal">Normal (mais rápida)</option><option value="max">Máxima (mais lenta)</option></select>
+            </div>
+          </div>
+        </aside>
+
+        <div class="centro">
+          <div id="avisoConta" class="notice warn small" hidden>Para transcrever na nuvem, ligue primeiro a sua conta Cloudflare gratuita no separador «Conta de IA». Pode gravar desde já: a transcrição é feita depois.</div>
+
+          <!-- gravação em curso -->
+          <div id="painelGravacao" class="card gravacao" hidden>
+            <div class="grav-topo"><span class="rec" id="recPonto"></span><span id="gravEstado">A gravar</span></div>
+            <div class="relogio" id="relogio">00:00:00</div>
+            <div class="nivel"><div id="nivel"></div></div>
+            <div class="row wrap grav-acoes">
+              <button id="btnPausar" class="btn secondary">Pausar</button>
+              <button id="btnTerminar" class="btn primary">Terminar a gravação</button>
+            </div>
+            <button id="btnContinuarGrav" class="btn primary block" hidden>Continuar a gravar</button>
+            <p class="muted small" id="gravDica">Mantenha a aplicação aberta e o ecrã ligado; para gravações longas, ligue o carregador. O áudio é guardado neste aparelho a cada minuto e meio.</p>
+            <p class="muted small" id="gravTranscritas"></p>
+          </div>
+
+          <!-- gravação aberta -->
+          <div id="painelTrabalho" class="card trabalho" hidden>
+            <div class="trab-cab">
+              <div><h2 id="tNome"></h2><p class="muted small" id="tMeta"></p></div>
+              <div class="trab-menu">
+                <button id="btnRenomear" class="link-btn">Mudar o nome</button>
+                <button id="btnApagar" class="link-btn">Apagar</button>
+              </div>
+            </div>
+            <div id="progresso" class="progresso" hidden>
+              <div class="barra"><div id="barra"></div></div>
+              <div class="prog-txt"><span id="progTxt"></span><span id="progEta"></span></div>
+            </div>
+            <div id="trabStatus" class="status" aria-live="polite"></div>
+            <div class="row wrap trab-acoes">
+              <button id="btnTranscrever" class="btn primary">Transcrever</button>
+              <button id="btnParar" class="btn secondary" hidden>Parar</button>
+              <label id="lblReabrir" class="btn secondary ficheiro inline" hidden>Seleccionar de novo o ficheiro<input id="ficheiroReabrir" type="file" accept="audio/*,video/*"></label>
+              <button id="btnWord" class="btn secondary">Descarregar em Word</button>
+              <button id="btnTxt" class="btn secondary">Texto (.txt)</button>
+              <button id="btnMp3" class="btn secondary">Áudio (.mp3)</button>
+              <button id="btnCopiar" class="btn secondary">Copiar</button>
+            </div>
+            <audio id="leitor" controls preload="none" hidden></audio>
+            <div id="transcricao" class="transcricao"></div>
+          </div>
+
+          <div id="painelVazio" class="card vazio-card">
+            <h2>Grave ou carregue uma gravação</h2>
+            <p>Seleccione <b>Gravar agora</b> no início da audiência, da reunião ou da diligência, e <b>Terminar a gravação</b> no fim. A transcrição integral fica pronta pouco depois, com a indicação da hora em cada parágrafo.</p>
+            <p>Também pode carregar um ficheiro MP3 ou de outro formato, gravado no telemóvel, num gravador ou numa videoconferência.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ CONTA DE IA -->
+    <section id="tab-conta" class="panel">
+      <div class="card estreito">
+        <div class="step"><span class="num">☁</span><h2>Conta de IA</h2></div>
+        <p class="muted">A transcrição na nuvem usa o serviço de IA da sua própria conta Cloudflare, gratuita, com uma quota diária só sua (cerca de três horas e meia de áudio por dia). O áudio é tratado sem retenção de dados e não fica guardado na Cloudflare nem na ponte do Assessor.</p>
+        <div id="iaEstado" class="notice small"></div>
+        <label class="lbl" for="iaConta">Identificador da conta (Account ID)</label>
+        <input id="iaConta" type="text" spellcheck="false" autocomplete="off" placeholder="32 caracteres">
+        <label class="lbl" for="iaToken">Token da API (Workers AI)</label>
+        <input id="iaToken" type="password" spellcheck="false" autocomplete="off" placeholder="Cole o token">
+        <button id="btnGuardarConta" class="btn primary block">Guardar e testar</button>
+        <button id="btnRemoverConta" class="btn secondary block">Remover a conta deste aparelho</button>
+        <div id="contaStatus" class="status" aria-live="polite"></div>
+        <p class="muted small">Os passos, que demoram cerca de cinco minutos, estão em <a href="https://ana-marta-soares-direito-ia.github.io/assessor/transcricao.html#conta-ia" target="_blank" rel="noopener">ana-marta-soares-direito-ia.github.io/assessor/transcricao.html</a>, na secção «Ligar a conta de IA».</p>
+      </div>
+    </section>
+
+    <!-- ============================================ INFORMAÇÃO -->
+    <section id="tab-info" class="panel">
+      <div class="card prose estreito">
+        <h2>Como funciona</h2>
+        <p>Durante a gravação, o áudio é guardado neste aparelho em partes de cerca de minuto e meio, cortadas nas pausas da fala. Cada parte é transcrita na íntegra, em português, pelo modelo Whisper, na sua conta Cloudflare ou, se o preferir, neste computador. A transcrição apresenta a hora de cada parágrafo, que permite ouvir o trecho correspondente.</p>
+        <h2>Sem limite de duração</h2>
+        <p>As gravações e os ficheiros carregados podem ter qualquer duração. A quota gratuita da Cloudflare cobre cerca de três horas e meia de áudio por dia: quando é atingida, a transcrição fica suspensa e continua no dia seguinte, a partir do ponto em que parou, ou de imediato, neste computador. Com o plano pago da Cloudflare (Workers Paid), 10 horas de áudio custam cerca de 0,20 €.</p>
+        <h2>Gravações longas no telemóvel</h2>
+        <p>Mantenha a aplicação aberta e o ecrã ligado durante a gravação; o Assessor pede ao aparelho que não apague o ecrã. No iPhone, o sistema suspende o microfone quando a aplicação é fechada ou o ecrã é bloqueado: nesse caso, o áudio já gravado fica guardado e basta seleccionar «Continuar a gravar». Para gravações de várias horas, ligue o carregador.</p>
+        <h2>Ficheiros</h2>
+        <p>São aceites MP3, M4A, WAV, OGG, OPUS, AAC, FLAC e os vídeos MP4, MOV e WEBM, entre outros. A transcrição pode ser descarregada em Word ou em texto, e a gravação feita no Assessor pode ser descarregada em MP3.</p>
+        <h2>Limitações</h2>
+        <p>A transcrição é automática e deve ser revista antes de ser utilizada, designadamente quanto aos nomes próprios, aos números e às passagens em que várias pessoas falam ao mesmo tempo. Os oradores não são identificados.</p>
+        <h2>Instalar no aparelho</h2>
+        <p>No computador, no Chrome, no Edge ou no Brave, seleccione o ícone de instalação na barra de endereço. No iPhone, no Safari, seleccione Partilhar e «Adicionar ao ecrã principal». No Android, no Chrome, seleccione o menu e «Instalar aplicação».</p>
+        <h2>Licença</h2>
+        <p id="licInfo" class="muted">Sem licença activada.</p>
+        <button id="btnDeactivate" class="btn secondary" hidden>Remover a licença deste aparelho</button>
+        <p class="muted small" style="margin-top:12px">Versão 1.0</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="mark">Ana Marta Soares, Especialista em IA aplicada ao Direito</footer>
+
+  <script src="../nacl-fast.min.js"></script>
+  <script src="../licenca.js"></script>
+  <script src="../engine.js"></script>
+  <script src="../docxutil.js"></script>
+  <script src="../office/comum.js"></script>
+  <script src="transcricao.js"></script>
+</body>
+</html>
