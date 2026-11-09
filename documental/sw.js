@@ -1,5 +1,5 @@
 // Assessor Documental: guarda a aplicação no aparelho para abrir sem rede (a IA continua a precisar de internet).
-const CACHE = 'assessor-documental-v6';
+const CACHE = 'assessor-documental-v7';
 const FICHEIROS = ['./', './index.html', './documental.js', './documental.css', './suporte.js', './manifest.webmanifest',
   '../taskpane.css', '../office/office.css', '../office/comum.js', '../office/anexos.js', '../nacl-fast.min.js', '../licenca.js',
   '../engine.js', '../docxutil.js', '../pdf/lib/pdf.min.mjs', '../pdf/lib/pdf.worker.min.mjs', '../assets/icon-64.png'];
