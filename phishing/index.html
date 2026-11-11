@@ -115,11 +115,13 @@
   </section>
   <section id="instalar">
     <h2>Instalação</h2>
-    <h3 id="outlook">No Outlook</h3>
+    <p>Escolha o correio que utiliza. Cada versão tem o seu ficheiro e os seus passos.</p>
+    <p><a class="cta solid" href="#outlook">Uso o Outlook</a> <a class="cta solid" href="#gmail">Uso o Gmail</a></p>
+    <h3 id="outlook" style="margin-top:34px;padding-top:22px;border-top:1px solid #ddd">Se usa o Outlook</h3>
     <p>Funciona no Outlook na Web, no novo Outlook, no Outlook clássico para Windows (Microsoft 365 ou Outlook 2021 e posteriores) e no Outlook para Mac. Instala-se uma vez e fica disponível em todos os computadores em que use a mesma conta.</p>
-    <p><a class="cta solid" href="outlook/manifest.xml" download="alerta-phishing-outlook-manifest.xml">Descarregar o ficheiro do suplemento</a></p>
+    <p><a class="cta solid" href="outlook/manifest.xml" download="alerta-phishing-outlook-manifest.xml">Descarregar para o Outlook (ficheiro .xml)</a></p>
     <ol>
-      <li>Descarregue o ficheiro do suplemento, <b>alerta-phishing-outlook-manifest.xml</b>.</li>
+      <li>Descarregue o ficheiro do suplemento, <b>alerta-phishing-outlook-manifest.xml</b>. Não é preciso abri-lo nem mudá-lo de sítio.</li>
       <li>Abra <a href="https://aka.ms/olksideload" target="_blank" rel="noopener">aka.ms/olksideload</a> e, se lhe for pedido, inicie sessão com a sua conta de correio. Abre-se a janela dos suplementos do Outlook.</li>
       <li>Seleccione <b>Os meus suplementos</b> e, no fim da lista, em <b>Suplementos personalizados</b>, seleccione <b>Adicionar um suplemento personalizado</b> e depois <b>Adicionar a partir de ficheiro</b>.</li>
       <li>Indique o ficheiro descarregado e confirme com <b>Instalar</b>.</li>
@@ -127,15 +129,15 @@
       <li>Fixe o painel com o alfinete, no canto superior. A partir daí, o painel analisa cada mensagem que abrir.</li>
     </ol>
     <div class="note"><b>Escritórios com Microsoft 365:</b> o administrador pode instalar o suplemento para todos os utilizadores no Centro de administração, em <b>Definições</b>, <b>Aplicações integradas</b>, <b>Carregar aplicações personalizadas</b>.</div>
-    <h3 id="gmail">No Gmail</h3>
+    <h3 id="gmail" style="margin-top:34px;padding-top:22px;border-top:1px solid #ddd">Se usa o Gmail</h3>
     <p>É uma extensão para o Google Chrome, o Microsoft Edge e o Brave, no computador. Funciona com contas Gmail e Google Workspace.</p>
-    <p><a class="cta solid" href="instalar/alerta-phishing-gmail.zip" download>Descarregar o Alerta Phishing para Gmail</a></p>
+    <p><a class="cta solid" href="instalar/alerta-phishing-gmail.zip" download>Descarregar para o Gmail (ficheiro .zip)</a></p>
     <ol>
       <li>Descarregue o ficheiro <b>alerta-phishing-gmail.zip</b> e abra-o (duplo clique). Surge a pasta <b>alerta-phishing-gmail</b>. Mova-a para um local permanente, por exemplo a pasta Documentos: a extensão deixa de funcionar se a pasta for apagada.</li>
       <li>No browser, abra a página das extensões, escrevendo na barra de endereço <b>chrome://extensions</b> (no Edge, <b>edge://extensions</b>; no Brave, <b>brave://extensions</b>).</li>
       <li>Active o <b>Modo de programador</b> (no canto superior direito; no Edge, no menu da esquerda).</li>
       <li>Seleccione o botão que carrega uma extensão a partir de uma pasta (no Chrome, <b>Carregar expandida</b>; em inglês, «Load unpacked») e indique a pasta <b>alerta-phishing-gmail</b>.</li>
-      <li>Abre-se a página de activação. Cole o código e seleccione <b>Activar</b>.</li>
+      <li>Abre-se a página de activação. Cole o código de activação que recebeu, que começa por <b>AMS-</b>, e seleccione <b>Activar</b>.</li>
       <li>Abra ou recarregue o Gmail e abra uma mensagem. O resultado da análise aparece por cima da mensagem.</li>
     </ol>
     <div class="duas"><div><p>No Outlook, o resultado aparece no painel lateral, com a lista dos sinais encontrados e o que fazer a seguir.</p></div><img class="shot" src="assets/outlook-alerta.jpg" alt="Painel do Alerta Phishing no Outlook com os sinais de fraude encontrados numa mensagem" loading="lazy" style="max-width:320px"></div>
