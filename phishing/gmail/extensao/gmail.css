@@ -1,0 +1,9 @@
+/* Alerta Phishing no Gmail: faixa apresentada por cima da mensagem aberta. */
+.ap-gmail{margin:8px 0 14px;max-width:900px}
+.ap-gmail .ap-res{margin:0}
+.ap-gmail .ap-res.ap-baixo{padding:8px 14px}
+.ap-gmail .ap-res.ap-baixo .ap-resumo,.ap-gmail .ap-res.ap-baixo .ap-nota{display:none}
+.ap-gmail .ap-res.ap-baixo .ap-marca{width:22px;height:22px;font-size:13px}
+.ap-gmail .ap-res.ap-baixo .ap-tt strong{font-size:14px}
+.ap-gmail .ap-pedir{font-family:Inter,"Segoe UI",system-ui,Arial,sans-serif;font-size:13px;background:#fff;border:1.5px solid #cfc4b0;border-left:8px solid #151412;padding:10px 14px;color:#111;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.ap-gmail .ap-pedir button{font:inherit;background:#151412;color:#fff;border:0;padding:8px 14px;cursor:pointer;min-height:36px}

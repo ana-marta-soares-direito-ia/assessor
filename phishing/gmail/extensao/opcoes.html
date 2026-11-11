@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alerta Phishing para Gmail</title>
+<style>
+html,body{margin:0;background:#f4eee2;color:#111;font-family:Inter,"Segoe UI",system-ui,-apple-system,Arial,sans-serif;font-size:14px;line-height:1.5;min-width:340px}
+header{background:#151412;color:#fff;padding:16px 20px}
+header h1{margin:0;font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:22px}
+header p{margin:2px 0 0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#bdb4a3}
+main{padding:16px;max-width:640px;margin:0 auto}
+.cartao{background:#fff;border:1.5px solid #cfc4b0;padding:16px 18px;margin:0 0 14px}
+.cartao h2{margin:0 0 8px;font-family:Georgia,"Times New Roman",serif;font-weight:400;font-size:19px}
+label{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#4a453d;margin:10px 0 4px}
+textarea{width:100%;box-sizing:border-box;font:inherit;font-size:13px;padding:8px;border:1px solid #111;min-height:84px}
+button.pr{font:inherit;background:#151412;color:#fff;border:0;padding:11px 16px;margin-top:10px;cursor:pointer;min-height:44px;letter-spacing:.08em;text-transform:uppercase;font-size:12px}
+.estado{margin-top:8px;font-size:13px;min-height:1.2em}.erro{color:#8e2a21}.certo{color:#2e6b3f}
+.sec{background:none;border:0;padding:6px 0;font:inherit;font-size:13px;text-decoration:underline;cursor:pointer;color:#111}
+.lista{list-style:none;padding:0;margin:6px 0 0}.lista li{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:6px 0;border-top:1px solid #e4dbc9;overflow-wrap:anywhere}
+footer{padding:0 16px 20px;font-size:12px;color:#4a453d;max-width:640px;margin:0 auto}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header><h1>Alerta Phishing</h1><p>Para o Gmail</p></header>
+<main>
+  <section id="activar" class="cartao">
+    <h2>Activação</h2>
+    <p>Cole o código de activação que recebeu depois do pagamento. A activação faz-se uma única vez em cada navegador.</p>
+    <label for="codigo">Código de activação</label>
+    <textarea id="codigo" placeholder="AMS-..." spellcheck="false" autocomplete="off"></textarea>
+    <button id="btnActivar" class="pr" type="button">Activar</button>
+    <div id="estadoLic" class="estado erro" aria-live="polite"></div>
+  </section>
+  <section id="activo" class="cartao" hidden>
+    <h2>Licença activa</h2>
+    <p class="estado certo" id="txtActivo"></p>
+    <p>Abra o Gmail e uma mensagem recebida. O resultado da análise aparece por cima da mensagem. Se o Gmail já estava aberto, recarregue a página.</p>
+    <button id="btnSair" class="sec" type="button">Remover a activação deste navegador</button>
+  </section>
+  <section id="confianca" class="cartao" hidden>
+    <h2>Remetentes de confiança</h2>
+    <p>Para estes endereços não são assinalados o nome da entidade nem o endereço de resposta. Os restantes sinais continuam a ser verificados.</p>
+    <ul id="listaConf" class="lista"></ul>
+  </section>
+</main>
+<footer>Alerta Phishing, de Ana Marta Soares, Especialista em IA aplicada ao Direito. A análise é feita neste computador: nenhuma mensagem é enviada para fora dele.</footer>
+<script src="nacl-fast.min.js"></script>
+<script src="licenca.js"></script>
+<script src="opcoes.js"></script>
+</body>
+</html>

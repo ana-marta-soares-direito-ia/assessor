@@ -1,0 +1,24 @@
+/* Alerta Phishing: estilos do resultado e do painel. Ana Marta Soares, Especialista em IA aplicada ao Direito. */
+.ap-res{font-family:Inter,"Segoe UI",system-ui,-apple-system,Arial,sans-serif;font-size:14px;line-height:1.5;color:#111;background:#fff;border:1.5px solid #cfc4b0;border-left-width:8px;padding:14px 16px;margin:0 0 12px;text-align:left}
+.ap-res.ap-alto{border-color:#8e2a21;background:#fbf1ef}
+.ap-res.ap-medio{border-color:#a8730f;background:#fbf6ea}
+.ap-res.ap-baixo{border-color:#2e6b3f;background:#f3f8f3}
+.ap-topo{display:flex;align-items:center;gap:12px}
+.ap-marca{flex:none;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:17px;color:#fff;background:#2e6b3f}
+.ap-alto .ap-marca{background:#8e2a21}.ap-medio .ap-marca{background:#a8730f}
+.ap-tt{display:flex;flex-direction:column;min-width:0}
+.ap-tt strong{font-size:16px;font-weight:600}
+.ap-de{font-size:12.5px;color:#4a453d;overflow-wrap:anywhere}
+.ap-resumo{margin:10px 0 0}
+.ap-det{margin-top:10px}
+.ap-det summary{cursor:pointer;font-weight:600;padding:4px 0}
+.ap-sinais{list-style:none;margin:6px 0 0;padding:0}
+.ap-sinais li{padding:9px 0;border-top:1px solid rgba(17,17,17,.12)}
+.ap-sinais b{display:block;font-weight:600}
+.ap-sinais span{display:block;color:#3d3932;overflow-wrap:anywhere}
+.ap-sinais li.ap-grave b::before{content:"Grave. ";color:#8e2a21}
+.ap-fazer{margin-top:10px;padding-top:10px;border-top:1px solid rgba(17,17,17,.12)}
+.ap-fazer ul{margin:4px 0 0;padding-left:18px}
+.ap-btn{margin-top:12px;font:inherit;font-size:13px;background:#fff;color:#111;border:1px solid #111;padding:9px 14px;cursor:pointer;min-height:40px}
+.ap-btn:hover{background:#111;color:#fff}
+.ap-nota{margin:12px 0 0;font-size:12px;color:#4a453d}

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alerta Phishing: aviso de e-mails fraudulentos no Gmail e no Outlook | Ana Marta Soares</title>
+<meta name="description" content="Suplemento para o Outlook e extensão para o Gmail que analisam a mensagem aberta e avisam quando apresenta sinais de fraude (phishing): remetente falso, endereços que imitam entidades, ligações enganosas e anexos perigosos. A análise é feita no computador. Licença: 130 €.">
+<link rel="canonical" href="https://ana-marta-soares-direito-ia.github.io/assessor/phishing/">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Ana Marta Soares">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_PT">
+<meta property="og:title" content="Alerta Phishing">
+<meta property="og:description" content="Suplemento para o Outlook e extensão para o Gmail que analisam a mensagem aberta e avisam quando apresenta sinais de fraude (phishing): remetente falso, endereços que imitam entidades, ligações enganosas e anexos perigosos. A análise é feita no computador. Licença: 130 €.">
+<meta property="og:url" content="https://ana-marta-soares-direito-ia.github.io/assessor/phishing/">
+<meta property="og:image" content="https://ana-marta-soares-direito-ia.github.io/assessor/phishing/assets/gmail-alerta.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Alerta Phishing", "url": "https://ana-marta-soares-direito-ia.github.io/assessor/phishing/", "applicationCategory": "SecurityApplication", "operatingSystem": "Microsoft Outlook, Google Chrome, Microsoft Edge, Brave", "inLanguage": "pt-PT", "description": "Suplemento para o Outlook e extensão para o Gmail que analisam a mensagem aberta e avisam quando apresenta sinais de fraude (phishing): remetente falso, endereços que imitam entidades, ligações enganosas e anexos perigosos. A análise é feita no computador. Licença: 130 €.", "author": {"@type": "Person", "name": "Ana Marta Soares", "url": "https://ana-marta-soares.netlify.app/"}, "offers": {"@type": "Offer", "price": "130", "priceCurrency": "EUR"}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "O Alerta Phishing impede que as mensagens fraudulentas cheguem à caixa de correio?", "acceptedAnswer": {"@type": "Answer", "text": "Não. A entrega das mensagens é decidida pelos filtros do Gmail e da Microsoft, antes de qualquer suplemento actuar. O Alerta Phishing analisa a mensagem quando a abre e avisa-o antes de clicar numa ligação, abrir um anexo ou responder."}}, {"@type": "Question", "name": "O Alerta Phishing detecta todas as fraudes?", "acceptedAnswer": {"@type": "Answer", "text": "Não. Nenhuma ferramenta o consegue. Uma mensagem enviada da conta verdadeira de um colega que foi invadida pode não apresentar nenhum sinal técnico. O Alerta Phishing é um apoio à atenção de quem lê e não a substitui."}}, {"@type": "Question", "name": "As minhas mensagens são enviadas para algum servidor?", "acceptedAnswer": {"@type": "Answer", "text": "Não. A análise é feita no próprio computador, pelo suplemento ou pela extensão. Nenhuma mensagem, nenhum anexo e nenhum endereço são enviados para fora dele. Não é usada inteligência artificial na nuvem."}}, {"@type": "Question", "name": "Que sinais são verificados?", "acceptedAnswer": {"@type": "Answer", "text": "O nome e o endereço do remetente, os endereços que imitam os de entidades conhecidas, o endereço de resposta, o destino real das ligações, o tipo dos anexos, as verificações de autenticidade registadas pelo servidor de correio (SPF, DKIM e DMARC) e as expressões típicas das fraudes, como a urgência e o pedido de credenciais ou de pagamentos."}}, {"@type": "Question", "name": "Em que programas funciona?", "acceptedAnswer": {"@type": "Answer", "text": "No Outlook na Web, no novo Outlook, no Outlook clássico para Windows (Microsoft 365 ou Outlook 2021 e posteriores) e no Outlook para Mac. No Gmail, funciona no computador, no Google Chrome, no Microsoft Edge e no Brave."}}, {"@type": "Question", "name": "Uma mensagem legítima foi assinalada. O que faço?", "acceptedAnswer": {"@type": "Answer", "text": "Se conhece o remetente, seleccione «Conheço este remetente e confio nele». A partir daí, o nome da entidade e o endereço de resposta deixam de ser assinalados para esse endereço. Os restantes sinais continuam a ser verificados."}}, {"@type": "Question", "name": "Quanto custa o Alerta Phishing?", "acceptedAnswer": {"@type": "Answer", "text": "A licença individual custa 130 €, em pagamento único, e inclui as versões para o Outlook e para o Gmail."}}]}]</script>
+<link rel="icon" href="assets/icon-32.png">
+<style>
+@font-face{font-family:"Fraunces";src:url("fonts/fraunces-600.woff2") format("woff2");font-weight:600;font-display:swap;}
+@font-face{font-family:"Inter";src:url("fonts/inter-400.woff2") format("woff2");font-weight:400;font-display:swap;}
+@font-face{font-family:"Inter";src:url("fonts/inter-600.woff2") format("woff2");font-weight:600;font-display:swap;}
+
+  :root { --ink:#1e1a18; --muted:#5c544f; --line:#ddd4ca; --bg:#f4f1ec; --brand:#1e1a18; --brand2:#3a332f; --soft:#ece6dd; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif; color:var(--ink); background:var(--bg); line-height:1.55; }
+  header { background:linear-gradient(135deg,var(--brand),var(--brand2)); color:#fff; padding:48px 16px 56px; }
+  .wrap { max-width:880px; margin:0 auto; }
+  .brand { display:flex; align-items:center; gap:14px; }
+  .brand img { width:56px; height:56px; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,.25); }
+  h1 { margin:0; font-size:30px; line-height:1.15; }
+  header p.lead { font-size:17px; max-width:640px; opacity:.93; margin:18px 0 26px; }
+  .cta { display:inline-block; background:#fff; color:var(--brand); padding:12px 20px; border-radius:9px; font-weight:650; text-decoration:none; }
+  .cta.solid { background:var(--brand); color:#fff; }
+  .cta.ghost { background:transparent; color:#fff; border:1px solid rgba(255,255,255,.6); margin-left:8px; }
+  main { padding:8px 16px 40px; }
+  section { background:#fff; border:1px solid var(--line); border-radius:14px; padding:24px; margin-top:20px; }
+  h2 { font-size:20px; margin:0 0 12px; color:var(--brand); }
+  h3 { font-size:15px; margin:18px 0 6px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px; }
+  .feat { background:var(--bg); border-radius:10px; padding:14px; }
+  .feat b { display:block; margin-bottom:4px; }
+  ol { padding-left:20px; margin:6px 0; } li { margin:4px 0; }
+  .tabs { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
+  .tabs button { font:inherit; font-size:14px; border:1px solid var(--line); background:#fff; color:var(--brand); padding:8px 12px; border-radius:8px; cursor:pointer; }
+  .tabs button.on { background:var(--brand); color:#fff; border-color:var(--brand); }
+  .pane { display:none; } .pane.on { display:block; }
+  code { background:var(--soft); color:var(--brand); padding:1px 5px; border-radius:4px; font-size:13px; word-break:break-all; }
+  .note { background:#fff4dc; color:#6b4600; border-radius:9px; padding:12px 14px; font-size:14px; margin-top:12px; }
+  .muted { color:var(--muted); }
+  footer { text-align:center; color:var(--brand); font-size:13px; padding:20px 16px 32px; }
+  @media (max-width:520px){ h1{font-size:24px} .cta.ghost{margin:10px 0 0} section{padding:18px} }
+
+  /* estilo sóbrio */
+  body { font-family:"Inter","Segoe UI",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif; }
+  header { background:#f4f1ec !important; color:var(--ink) !important; border-bottom:1px solid var(--line); }
+  header p.lead { color:var(--muted); opacity:1; }
+  h1, h2 { font-family:"Fraunces",Georgia,serif; font-weight:600; }
+  h2 { color:var(--ink) !important; }
+  .brand img { box-shadow:none; }
+  .cta { background:var(--ink) !important; color:#fff !important; }
+  .cta.ghost { background:transparent !important; color:var(--ink) !important; border:1px solid var(--ink) !important; }
+  .tabs button { color:var(--ink); }
+  .tabs button.on { background:var(--ink); border-color:var(--ink); color:#fff; }
+  code { background:#ece6dd; color:var(--ink); }
+  a { color:var(--ink); }
+  footer { color:var(--muted); }
+  .shot { display:block; width:100%; max-width:380px; margin:0 auto; border:1px solid var(--line); border-radius:12px; }
+  .duas { display:grid; grid-template-columns: 1fr 380px; gap:28px; align-items:start; } @media (max-width:760px){ .duas{ grid-template-columns:1fr } }
+  .price { font-family:"Fraunces",Georgia,serif; font-size:26px; font-weight:600; margin:0 0 4px; }
+  nav.top { font-size:14px; margin-bottom:22px; } nav.top a { color:var(--muted); text-decoration:none; margin-right:14px; }
+  details { border-top:1px solid var(--line); padding:12px 0; } details:last-child { border-bottom:1px solid var(--line); } summary { cursor:pointer; font-weight:600; }
+  .exemplos li { margin:6px 0; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav class="top"><a href="./">Alerta Phishing</a><a href="#outlook">Outlook</a><a href="#gmail">Gmail</a><a href="https://ana-marta-soares.netlify.app/">Ana Marta Soares</a></nav>
+    <div class="brand"><img src="assets/icon-128.png" alt=""><h1>Alerta Phishing<br><span style="font-weight:400;font-size:20px">Aviso de mensagens fraudulentas no Gmail e no Outlook</span></h1></div>
+    <p class="lead">Abre a mensagem e, antes de clicar, sabe se ela apresenta sinais de fraude. O Alerta Phishing verifica o remetente, as ligações e os anexos da mensagem aberta e explica, em linguagem corrente, o que encontrou.</p>
+    <a class="cta" href="#instalar">Instalar</a>
+    <a class="cta ghost" href="#comprar">Adquirir licença: 130 €</a>
+  </div>
+</header>
+<main class="wrap">
+  <section>
+    <div class="duas">
+      <div>
+        <h2>A mensagem parece da Ordem. Será?</h2>
+        <p>As fraudes dirigidas a advogados usam o nome da Ordem dos Advogados, dos tribunais, da Autoridade Tributária, dos bancos e até de colegas. O Alerta Phishing verifica o que o olhar apressado não vê:</p>
+        <ul class="exemplos"><li>O nome diz «Ordem dos Advogados», mas o endereço é de uma conta gratuita.</li><li>O endereço é quase igual ao verdadeiro, com uma letra trocada.</li><li>A ligação mostra o sítio do banco e abre outro endereço.</li><li>A resposta seguiria para uma pessoa diferente de quem enviou.</li><li>O anexo parece um PDF e é um programa.</li></ul>
+      </div>
+      <img class="shot" src="assets/gmail-alerta.jpg" alt="Aviso do Alerta Phishing por cima de uma mensagem do Gmail, com a lista dos sinais de fraude encontrados" loading="lazy">
+    </div>
+  </section>
+  <section>
+    <h2>O que verifica</h2>
+    <div class="grid"><div class="feat"><b>Remetente que não é quem diz</b>Assinala as mensagens cujo nome invoca a Ordem dos Advogados, a Autoridade Tributária, um tribunal, um banco ou outra entidade conhecida, quando o endereço não pertence a essa entidade.</div><div class="feat"><b>Endereços que imitam os verdadeiros</b>Detecta os domínios parecidos com os oficiais, com letras trocadas, hífenes acrescentados ou o nome da entidade colocado noutro endereço.</div><div class="feat"><b>Ligações enganosas</b>Compara o endereço que a ligação mostra com o endereço que realmente abre, e assinala os endereços numéricos, as ligações encurtadas e as que escondem o destino.</div><div class="feat"><b>Resposta desviada</b>Avisa quando a resposta à mensagem seguiria para um endereço diferente do de quem a enviou.</div><div class="feat"><b>Falhas de autenticidade</b>Lê as verificações SPF, DKIM e DMARC que o servidor de correio regista em cada mensagem e avisa quando falharam.</div><div class="feat"><b>Anexos perigosos</b>Assinala os programas, as páginas disfarçadas de documento, os ficheiros com duas extensões e os documentos com macros.</div><div class="feat"><b>Pressão e pedidos de dados</b>Reconhece as expressões típicas das fraudes: a urgência, a ameaça de suspensão, o pedido de palavra-passe, a alteração de IBAN.</div><div class="feat"><b>Tudo no seu computador</b>A análise é feita no próprio aparelho. Nenhuma mensagem é enviada para fora dele, o que respeita o sigilo profissional.</div></div>
+  </section>
+  <section>
+    <h2>O que não faz</h2>
+    <p>O Alerta Phishing não impede que as mensagens cheguem à caixa de correio: essa decisão cabe aos filtros do Gmail e da Microsoft. Também não garante que detecta todas as fraudes. Uma mensagem enviada da conta verdadeira de um colega que foi invadida pode não apresentar nenhum sinal técnico. É um segundo par de olhos, que avisa antes do clique, e não dispensa a atenção de quem lê.</p>
+  </section>
+  <section id="comprar">
+    <h2>Como adquirir e começar a utilizar</h2>
+    <p class="price">130 €</p>
+    <p class="muted">Licença individual, em pagamento único. Inclui as versões para o Outlook e para o Gmail.</p>
+    <ol>
+      <li>Envie mensagem a <a href="https://www.linkedin.com/in/marta-soares-direito-ia">Ana Marta Soares no LinkedIn</a> ou faça o pedido em <a href="https://ana-marta-soares.netlify.app/ferramentas/alerta-phishing.html">ana-marta-soares.netlify.app</a>. Após o pagamento, recebe o código de activação.</li>
+      <li>Instale a versão para o seu correio, seguindo os <a href="#instalar">passos abaixo</a>.</li>
+      <li>Cole o código de activação e seleccione <b>Activar</b>.</li>
+    </ol>
+  </section>
+  <section id="instalar">
+    <h2>Instalação</h2>
+    <h3 id="outlook">No Outlook</h3>
+    <p>Funciona no Outlook na Web, no novo Outlook, no Outlook clássico para Windows (Microsoft 365 ou Outlook 2021 e posteriores) e no Outlook para Mac. Instala-se uma vez e fica disponível em todos os computadores em que use a mesma conta.</p>
+    <p><a class="cta solid" href="outlook/manifest.xml" download="alerta-phishing-outlook-manifest.xml">Descarregar o ficheiro do suplemento</a></p>
+    <ol>
+      <li>Descarregue o ficheiro do suplemento, <b>alerta-phishing-outlook-manifest.xml</b>.</li>
+      <li>Abra <a href="https://aka.ms/olksideload" target="_blank" rel="noopener">aka.ms/olksideload</a> e, se lhe for pedido, inicie sessão com a sua conta de correio. Abre-se a janela dos suplementos do Outlook.</li>
+      <li>Seleccione <b>Os meus suplementos</b> e, no fim da lista, em <b>Suplementos personalizados</b>, seleccione <b>Adicionar um suplemento personalizado</b> e depois <b>Adicionar a partir de ficheiro</b>.</li>
+      <li>Indique o ficheiro descarregado e confirme com <b>Instalar</b>.</li>
+      <li>Abra uma mensagem recebida, seleccione o botão <b>Aplicações</b> (no Outlook clássico, o botão <b>Alerta Phishing</b> do separador <b>Base</b>) e escolha <b>Alerta Phishing</b>. Cole o código de activação.</li>
+      <li>Fixe o painel com o alfinete, no canto superior. A partir daí, o painel analisa cada mensagem que abrir.</li>
+    </ol>
+    <div class="note"><b>Escritórios com Microsoft 365:</b> o administrador pode instalar o suplemento para todos os utilizadores no Centro de administração, em <b>Definições</b>, <b>Aplicações integradas</b>, <b>Carregar aplicações personalizadas</b>.</div>
+    <h3 id="gmail">No Gmail</h3>
+    <p>É uma extensão para o Google Chrome, o Microsoft Edge e o Brave, no computador. Funciona com contas Gmail e Google Workspace.</p>
+    <p><a class="cta solid" href="instalar/alerta-phishing-gmail.zip" download>Descarregar o Alerta Phishing para Gmail</a></p>
+    <ol>
+      <li>Descarregue o ficheiro <b>alerta-phishing-gmail.zip</b> e abra-o (duplo clique). Surge a pasta <b>alerta-phishing-gmail</b>. Mova-a para um local permanente, por exemplo a pasta Documentos: a extensão deixa de funcionar se a pasta for apagada.</li>
+      <li>No browser, abra a página das extensões, escrevendo na barra de endereço <b>chrome://extensions</b> (no Edge, <b>edge://extensions</b>; no Brave, <b>brave://extensions</b>).</li>
+      <li>Active o <b>Modo de programador</b> (no canto superior direito; no Edge, no menu da esquerda).</li>
+      <li>Seleccione o botão que carrega uma extensão a partir de uma pasta (no Chrome, <b>Carregar expandida</b>; em inglês, «Load unpacked») e indique a pasta <b>alerta-phishing-gmail</b>.</li>
+      <li>Abre-se a página de activação. Cole o código e seleccione <b>Activar</b>.</li>
+      <li>Abra ou recarregue o Gmail e abra uma mensagem. O resultado da análise aparece por cima da mensagem.</li>
+    </ol>
+    <div class="duas"><div><p>No Outlook, o resultado aparece no painel lateral, com a lista dos sinais encontrados e o que fazer a seguir.</p></div><img class="shot" src="assets/outlook-alerta.jpg" alt="Painel do Alerta Phishing no Outlook com os sinais de fraude encontrados numa mensagem" loading="lazy" style="max-width:320px"></div>
+  </section>
+  <section id="perguntas">
+    <h2>Perguntas frequentes</h2>
+    <details><summary>O Alerta Phishing impede que as mensagens fraudulentas cheguem à caixa de correio?</summary><p>Não. A entrega das mensagens é decidida pelos filtros do Gmail e da Microsoft, antes de qualquer suplemento actuar. O Alerta Phishing analisa a mensagem quando a abre e avisa-o antes de clicar numa ligação, abrir um anexo ou responder.</p></details><details><summary>O Alerta Phishing detecta todas as fraudes?</summary><p>Não. Nenhuma ferramenta o consegue. Uma mensagem enviada da conta verdadeira de um colega que foi invadida pode não apresentar nenhum sinal técnico. O Alerta Phishing é um apoio à atenção de quem lê e não a substitui.</p></details><details><summary>As minhas mensagens são enviadas para algum servidor?</summary><p>Não. A análise é feita no próprio computador, pelo suplemento ou pela extensão. Nenhuma mensagem, nenhum anexo e nenhum endereço são enviados para fora dele. Não é usada inteligência artificial na nuvem.</p></details><details><summary>Que sinais são verificados?</summary><p>O nome e o endereço do remetente, os endereços que imitam os de entidades conhecidas, o endereço de resposta, o destino real das ligações, o tipo dos anexos, as verificações de autenticidade registadas pelo servidor de correio (SPF, DKIM e DMARC) e as expressões típicas das fraudes, como a urgência e o pedido de credenciais ou de pagamentos.</p></details><details><summary>Em que programas funciona?</summary><p>No Outlook na Web, no novo Outlook, no Outlook clássico para Windows (Microsoft 365 ou Outlook 2021 e posteriores) e no Outlook para Mac. No Gmail, funciona no computador, no Google Chrome, no Microsoft Edge e no Brave.</p></details><details><summary>Uma mensagem legítima foi assinalada. O que faço?</summary><p>Se conhece o remetente, seleccione «Conheço este remetente e confio nele». A partir daí, o nome da entidade e o endereço de resposta deixam de ser assinalados para esse endereço. Os restantes sinais continuam a ser verificados.</p></details><details><summary>Quanto custa o Alerta Phishing?</summary><p>A licença individual custa 130 €, em pagamento único, e inclui as versões para o Outlook e para o Gmail.</p></details>
+  </section>
+</main>
+<footer><a href="../privacidade.html" style="color:inherit">Política de privacidade</a> · <a href="../termos.html" style="color:inherit">Termos de utilização</a><br><a href="https://ana-marta-soares.netlify.app/" style="color:inherit">Ana Marta Soares, Especialista em IA aplicada ao Direito</a> · <a href="https://ana-marta-soares.netlify.app/#ferramentas" style="color:inherit">Outras ferramentas</a></footer>
+</body>
+</html>
