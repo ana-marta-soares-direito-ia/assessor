@@ -5,7 +5,7 @@
 'use strict';
 (function () {
   if (window.__alertaPhishing) return; window.__alertaPhishing = true;
-  var estado = { codigo: '', confianca: [] }, cabecalhos = {}, pendente = null;
+  var estado = { codigo: '', confianca: [] }, cabecalhos = {}, pendente = null, ik = '';
   function texto(el) { return el ? (el.innerText || el.textContent || '').trim() : ''; }
   function licenciado() { return LicencaAP.verificar(estado.codigo).ok; }
 
@@ -15,16 +15,20 @@
   }
   /** Chave de sessão do Gmail, necessária para pedir o original da mensagem. */
   function chaveSessao() {
-    var m = document.documentElement.innerHTML.match(/[?&;]ik=([0-9a-f]{8,12})\b/) || document.documentElement.innerHTML.match(/"ik"\s*:\s*"([0-9a-f]{8,12})"/);
-    return m ? m[1] : '';
+    if (ik) return ik;
+    var m = null, scripts = document.querySelectorAll('script:not([src])');
+    for (var i = 0; i < scripts.length && !m; i++) m = (scripts[i].textContent || '').match(/GM_ID_KEY\s*=\s*['"]([0-9a-f]{6,14})['"]/);
+    if (!m) m = document.documentElement.innerHTML.match(/[?&;]ik=([0-9a-f]{6,14})\b/);
+    ik = m ? m[1] : '';
+    return ik;
   }
   /** Tenta obter os cabeçalhos técnicos da mensagem (endereço de resposta e verificações de autenticidade). Se o Gmail não os der, a análise prossegue sem eles. */
   function obterCabecalhos(id) {
     if (!id) return Promise.resolve('');
     if (cabecalhos[id] != null) return Promise.resolve(cabecalhos[id]);
-    var ik = chaveSessao(), base = location.origin + location.pathname;
-    if (!ik) { cabecalhos[id] = ''; return Promise.resolve(''); }
-    var url = base + '?ik=' + ik + '&view=om&permmsgid=msg-f:' + (function () { try { return BigInt('0x' + id).toString(); } catch (e) { return id; } })();
+    var chave = chaveSessao(), base = location.origin + location.pathname;
+    if (!chave) { cabecalhos[id] = ''; return Promise.resolve(''); }
+    var url = base + '?ik=' + chave + '&view=om&permmsgid=msg-f:' + (function () { try { return BigInt('0x' + id).toString(); } catch (e) { return id; } })();
     return fetch(url, { credentials: 'include' }).then(function (r) { return r.ok ? r.text() : ''; }).then(function (h) {
       var m = h.match(/<pre[^>]*id="raw_message_text"[^>]*>([\s\S]*?)<\/pre>/);
       var bruto = m ? m[1].replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&') : '';
