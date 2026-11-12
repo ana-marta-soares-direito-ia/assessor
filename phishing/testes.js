@@ -54,5 +54,20 @@ igual('licença: vazio', L.verificar('').ok, false);
 igual('licença: formato', L.verificar('COFRE-abc').motivo, 'O código não está no formato correcto. Deve começar por AMS-.');
 igual('licença: alterado', L.verificar('AMS-AmYAAAEAALp3UmtP96DEoRZravIMtww42yJ6tANE18NJqd3zFz5M2BTH6IuFL2cv5bY8piVFt1T5ALznVDr_RJsHWhbg9AX').ok, false);
 igual('licença: código verdadeiro de outro produto', L.verificar('AMS-AmYAAAEAALp3UmtP96DEoRZravIMtww42yJ6tANE18NJqd3zFz5M2BTH6IuFL2cv5bY8piVFt1T5ALznVDr_RJsHWhbg9AM').motivo, 'Este código é de outra ferramenta ou de um curso.');
+// Leitura de mensagens no formato original (.eml e código-fonte do webmail da Ordem)
+{
+  const E = require('./eml.js'), fs = require('fs'), path = require('path');
+  const ph = E.ler(fs.readFileSync(path.join(__dirname, 'testes-eml/phishing-oa.eml'), 'latin1'));
+  igual('eml: nome codificado', ph.deNome, 'Ordem dos Advogados');
+  igual('eml: assunto codificado', ph.assunto, 'Quotas em atraso: regularize hoje');
+  igual('eml: ligação do HTML em base64', ph.ligacoes[0] && ph.ligacoes[0].href, 'https://oa-pt.pagamentos-seguros.com/q');
+  igual('eml: anexo', ph.anexos[0], 'aviso.pdf.html');
+  igual('eml: responder para', ph.responderPara, 'tesouraria.oa@outlook.com');
+  igual('eml: fraude detectada', A.analisar(ph).nivel, 'alto');
+  const lg = E.ler(fs.readFileSync(path.join(__dirname, 'testes-eml/legitima.eml'), 'latin1'));
+  igual('eml: assunto em ISO-8859-1', lg.assunto, 'Processo 2817/26.4T8LSB: audiência de dia 20');
+  igual('eml: texto em quoted-printable', /presença na audiência/.test(lg.texto), true);
+  igual('eml: legítima sem alarme', A.analisar(lg).nivel, 'baixo');
+}
 console.log(total + ' testes, ' + falhas + ' falhas');
 process.exit(falhas ? 1 : 0);

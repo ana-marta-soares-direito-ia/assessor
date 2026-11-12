@@ -1,0 +1,44 @@
+Return-Path: <bounce@mailer-x.ru>
+Received: from mx (mx.mailer-x.ru [185.22.11.9]) by mx.sooma.com
+Authentication-Results: mx.sooma.com; spf=fail smtp.mailfrom=mailer-x.ru; dkim=none; dmarc=fail header.from=gmail.com
+From: =?UTF-8?B?T3JkZW0gZG9zIEFkdm9nYWRvcw==?= <ordem.advogados.pt@gmail.com>
+To: joao.santos-12345l@adv.oa.pt
+Reply-To: tesouraria.oa@outlook.com
+Subject: =?UTF-8?Q?Quotas_em_atraso=3A_regularize_hoje?=
+Date: Thu, 12 Nov 2026 10:42:00 +0000
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="MIX"
+
+--MIX
+Content-Type: multipart/alternative; boundary="ALT"
+
+--ALT
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Exmo.(a) Senhor(a) Advogado(a),
+
+Verific=C3=A1mos que tem quotas em atraso. Regularize nas pr=C3=B3ximas 24 horas=
+.
+https://oa-pt.pagamentos-seguros.com/q
+
+--ALT
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
+
+PGh0bWw+PGJvZHk+PHA+RXhtby4oYSkgU2VuaG9yKGEpIEFkdm9nYWRvKGEpLDwvcD48cD5WZXJp
+ZmljJmFhY3V0ZTttb3MgcXVlIHRlbSBxdW90YXMgZW0gYXRyYXNvLiBSZWd1bGFyaXplIGEgc3Vh
+IHNpdHVhJmNjZWRpbDsmYXRpbGRlO28gbmFzIHByJm9hY3V0ZTt4aW1hcyAyNCBob3JhcyBwYXJh
+IGV2aXRhciBhIHN1c3BlbnMmYXRpbGRlO28gZGEgaW5zY3JpJmNjZWRpbDsmYXRpbGRlO28uPC9w
+PjxwPjxhIGhyZWY9Imh0dHBzOi8vb2EtcHQucGFnYW1lbnRvcy1zZWd1cm9zLmNvbS9xIj5QYWdh
+ciBhZ29yYTwvYT48L3A+PC9ib2R5PjwvaHRtbD4=
+
+--ALT--
+
+--MIX
+Content-Type: application/octet-stream; name="aviso.pdf.html"
+Content-Disposition: attachment; filename="aviso.pdf.html"
+Content-Transfer-Encoding: base64
+
+PGh0bWw+PC9odG1sPg==
+--MIX--
