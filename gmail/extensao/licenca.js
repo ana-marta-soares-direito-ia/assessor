@@ -10,6 +10,8 @@
   else root.Licenca = factory(root.nacl);
 })(typeof self !== 'undefined' ? self : this, function (nacl) {
   var PUBLIC_KEY = 'jOhFm3xJ97tVVa1svD0PGRm3rPNR+DA7DQWW2fa+5fY=';
+  // Chaves aceites: a original (códigos já emitidos) e a do gerador único (2026-11).
+  var PUBLIC_KEYS = [PUBLIC_KEY, '8kedyj60XgI3ghCCGQymeEWysRBOBpGUjhBsyoHALq4='];
   var PREFIX = 'COFRE-';
   var EPOCH = Date.UTC(2026, 0, 1);
   var DAY = 86400000;
@@ -59,7 +61,7 @@
       var all = b64ToBytes(code.slice(PREFIX.length));
       if (all.length !== 71 || all[0] !== 1) return { ok: false, motivo: 'O código está incompleto ou foi alterado.' };
       var p = all.subarray(0, 7), sig = all.subarray(7);
-      if (!nacl.sign.detached.verify(p, sig, b64ToBytes(PUBLIC_KEY))) return { ok: false, motivo: 'O código não é válido.' };
+      if (!PUBLIC_KEYS.some(function (k) { return nacl.sign.detached.verify(p, sig, b64ToBytes(k)); })) return { ok: false, motivo: 'O código não é válido.' };
       var num = (p[1] << 16) | (p[2] << 8) | p[3];
       var expDays = (p[4] << 8) | p[5];
       var validade = expDays ? new Date(EPOCH + expDays * DAY) : null;
@@ -70,5 +72,5 @@
       return { ok: false, motivo: 'O código não é válido.' };
     }
   }
-  return { sign: sign, verify: verify, allows: allows, PUBLIC_KEY: PUBLIC_KEY, TIPOS: TIPOS };
+  return { sign: sign, verify: verify, allows: allows, PUBLIC_KEY: PUBLIC_KEY, PUBLIC_KEYS: PUBLIC_KEYS, TIPOS: TIPOS };
 });
